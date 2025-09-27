@@ -15,9 +15,11 @@ A full guide to Spotlight can be found on the [Spotlight Wiki](https://github.co
 ## Compiling from Source
 
 To compile Spotlight you will need to download it to a folder also containing the <a href="https://github.com/jupahe64/GL_EditorFramework">GL_EditorFramework</a> repository.<br>
-Or do this <br> ```shell 
+Or do this <br>
+```shell
 git clone https://github.com/KleinTimmi/Moonlight.git
-git clone https://github.com/jupahe64/GL_EditorFramework.git```
+git clone https://github.com/jupahe64/GL_EditorFramework.git
+```
 
 The folder layout should look like this:<br/>
 <br/>
