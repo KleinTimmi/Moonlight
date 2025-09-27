@@ -1,7 +1,7 @@
 # Spotlight - Super Mario 3D World Editor
 
-Spotlight is the latest (and best) Editor for Super Mario 3D World on the Nintendo Wii U.<br/>
-It has a boatload of features allowing you to make your very own levels, toad houses, mystery boxes, and more!
+Spotlight is the latest (and best) Editor for Super Mario Odyssey on the Nintendo Switch.<br/>
+It has a boatload of features allowing you to make your very own levels, toad houses, boss fihgts, and more!
 
 ## System Requirements
 
@@ -14,7 +14,11 @@ A full guide to Spotlight can be found on the [Spotlight Wiki](https://github.co
 
 ## Compiling from Source
 
-To compile Spotlight you will need to download it to a folder also containing the <a href="https://github.com/jupahe64/GL_EditorFramework">GL_EditorFramework</a><br/> repository.
+To compile Spotlight you will need to download it to a folder also containing the <a href="https://github.com/jupahe64/GL_EditorFramework">GL_EditorFramework</a> repository.<br>
+Or do this <br> ```shell 
+git clone https://github.com/KleinTimmi/Moonlight.git
+git clone https://github.com/jupahe64/GL_EditorFramework.git```
+
 The folder layout should look like this:<br/>
 <br/>
 ![image](https://user-images.githubusercontent.com/44330283/76013595-05647e00-5ecd-11ea-8c04-0752df56e593.png)
@@ -24,7 +28,7 @@ These folders must contain their respective project repositories.
 After that it should be ready to go.
 
 # Join Us
-If you need help with the program or editing the game, you can Join the Cat Chat (<a href="https://discord.gg/9JGKSze"><img src="https://img.shields.io/discord/308323056592486420.svg?color=7289da&logo=discord&logoColor=white" alt="The Cat Chat" /></a>). You can talk to other SM3DW hackers here as well as show your own hacking accomplishments.<br/>(*Dislaimer: We cannot help you get the 3D World files*)
+If you need help with the program or editing the game, you can Join the SMO Modding Hub (<a href="https://discord.gg/4jPGcTDp7b"><img src="https://img.shields.io/discord/308323056592486420.svg?color=7289da&logo=discord&logoColor=white" alt="SMO Modding Hub" /></a>). You can talk to other SMO Modding Hub hackers here as well as show your own hacking accomplishments.<br/>(*Dislaimer: We cannot help you get the SMO files*)
 
 # Credits
 
@@ -36,3 +40,4 @@ If you need help with the program or editing the game, you can Join the Cat Chat
 - KFreon: DXT1 Decompression
 
 - Whitehole (SMG Level editor): Some features and visuals were inspired by Whitehole
+- Kirbymimi: Readded SMO stuff
