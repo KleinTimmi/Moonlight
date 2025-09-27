@@ -21,6 +21,7 @@ namespace Spotlight.GUI
     {
         public SettingsForm(LevelEditorForm home)
         {
+
             Home = home;
             InitializeComponent();
             CenterToParent();
@@ -159,7 +160,7 @@ namespace Spotlight.GUI
             });
             DatabaseGenThread.Start();
             Program.ParameterDB = new ObjectParameterDatabase();
-            Program.ParameterDB.Create(new List<string> ([Program.GamePath, Program.ProjectPath]));
+            Program.ParameterDB.Create(new List<string>(new[] { Program.GamePath, Program.ProjectPath }));
             Program.ParameterDB.Save(Program.SOPDPath);
             if (DatabaseGenThread.IsAlive)
                 LoadLevelForm.DoClose = true;
@@ -178,12 +179,18 @@ namespace Spotlight.GUI
             }
         }
 
-        private void RenderAreaCheckBox_CheckedChanged(object sender, EventArgs e)
+        public void RenderAreaCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.DrawAreas = RenderAreaCheckBox.Checked;
             Properties.Settings.Default.Save();
             Home.LevelGLControlModern.Refresh();
         }
+
+        public void ToggleRenderAreas()
+        {
+            RenderAreaCheckBox.Checked = !RenderAreaCheckBox.Checked;
+        }
+
 
         private void RenderSkyboxesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -587,6 +594,16 @@ namespace Spotlight.GUI
             this.EditingGroupBox.ForeColor = color.ForeColor1;
             this.MiscellaneousGroupBox.BackColor = color.BackColor1;
             this.MiscellaneousGroupBox.ForeColor = color.ForeColor1;
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SettingsForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

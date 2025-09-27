@@ -44,7 +44,16 @@ namespace Spotlight
         private void SplashForm_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            string[] Splashes = Directory.Exists(Program.SplashPath) ? Directory.GetFiles(Program.SplashPath, "*.png", SearchOption.AllDirectories) : new string[0];
+#if !ODYSSEY
+            string[] Splashes = Directory.Exists(Program.SplashPath)
+                ? Directory.GetFiles(Program.SplashPath, "*.png", SearchOption.AllDirectories)
+                : Array.Empty<string>();
+#else
+            string[] Splashes = Directory.Exists(Program.SplashPath)
+                ? Directory.GetFiles(Program.SplashPath, "*.jpg", SearchOption.AllDirectories)
+                : Array.Empty<string>();
+#endif
+
             if (Splashes.Length == 0)
             {
                 Bitmap Default = new Bitmap(Properties.Resources.BootTvTex);

@@ -13,6 +13,7 @@ using System.Drawing;
 using DiscordRPC;
 using DiscordRPC.Logging;
 using System.Runtime.InteropServices;
+using GL_EditorFramework;
 
 namespace Spotlight
 {
@@ -24,8 +25,13 @@ namespace Spotlight
         {
             Assets = new Assets
             {
-                LargeImageKey = "spotlighticon",
+#if ODYSSEY
+                LargeImageKey = "MoonlightIcon",
+                LargeImageText = "A Super Mario Odyssey Level Editor using the GL_EditorFramework"
+#else
+                LargeImageKey = "SpotlightIcon",
                 LargeImageText = "A Super Mario 3D World Level Editor using the GL_EditorFramework"
+#endif
             },
             State = "Idle",
             Timestamps = Timestamps.Now,
@@ -48,6 +54,7 @@ namespace Spotlight
         [STAThread]
         static void Main()
         {
+
             SetProcessDpiAwareness(PROCESS_DPI_AWARENESS.Process_Per_Monitor_DPI_Aware);
 
             string platform;
@@ -63,8 +70,11 @@ namespace Spotlight
             {
                 File.Copy(dll, Path.Combine(nativelib, Path.GetFileName(dll)), true);
             }
-
-            Client = new DiscordRpcClient("875108365385220146")
+#if ODYSSEY
+            Client = new DiscordRpcClient("1421453316335865966") //new DiscordRpcClient ID for Moonlight
+#else
+            Client = new DiscordRpcClient("875108365385220146") //old one for 3DW
+#endif
             {
                 Logger = new ConsoleLogger(LogLevel.Error)
             };

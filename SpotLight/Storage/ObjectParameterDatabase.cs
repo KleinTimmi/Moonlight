@@ -13,6 +13,8 @@ using static Spotlight.ObjectParameterForm;
 using GL_EditorFramework;
 using System.Diagnostics;
 using System.IO;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using System.Windows.Forms;
 
 /* File Format .sopd
  * ----------------------------------------------
@@ -205,13 +207,26 @@ namespace Spotlight.Database
             List<string> Designs = new List<string>();
             List<string> Sounds = new List<string>();
             List<string> Combined = new List<string>();
-            foreach (string ProjectPath in paths)
+            MessageBox.Show(string.Join("\n", paths), "Test", MessageBoxButtons.OK);
+
+            foreach (string a in paths)
             {
-                string StageDataPath = ProjectPath + "\\\\StageData";
-                Zones.AddRange(Directory.GetFiles(StageDataPath, $"*{SM3DWorldZone.MAP_SUFFIX}"));
-                Designs.AddRange(Directory.GetFiles(StageDataPath, $"*{SM3DWorldZone.DESIGN_SUFFIX}"));
-                Sounds.AddRange(Directory.GetFiles(StageDataPath, $"*{SM3DWorldZone.SOUND_SUFFIX}"));
-                Combined.AddRange(Directory.GetFiles(StageDataPath, $"*{SM3DWorldZone.COMBINED_SUFFIX}"));
+                if (string.IsNullOrWhiteSpace(a) || !Path.IsPathRooted(a))
+                {
+                    continue;
+                }
+
+                string b = Path.Combine(a, "StageData");
+
+                if (!Directory.Exists(b))
+                {
+                    continue;
+                }
+
+                Zones.AddRange(Directory.GetFiles(b, $"*{SM3DWorldZone.MAP_SUFFIX}"));
+                Designs.AddRange(Directory.GetFiles(b, $"*{SM3DWorldZone.DESIGN_SUFFIX}"));
+                Sounds.AddRange(Directory.GetFiles(b, $"*{SM3DWorldZone.SOUND_SUFFIX}"));
+                Combined.AddRange(Directory.GetFiles(b, $"*{SM3DWorldZone.COMBINED_SUFFIX}"));
             }
 
             Dictionary<string, List<ObjectInfo>> MAPinfosByListName = new Dictionary<string, List<ObjectInfo>>()
@@ -322,14 +337,27 @@ namespace Spotlight.Database
             GetParameters(SOUNDinfosByListName, Category.Sound);
             foreach (string ProjectPath in paths)
             {
-                foreach (string file in Directory.GetFiles(ProjectPath + "\\\\ObjectData"))
+                foreach (string projectPath in paths)
                 {
-                    string name = Path.GetFileNameWithoutExtension(file);
-                    if (ObjectParameters.ContainsKey(name)) {
+                    string objectDataPath = Path.Combine(projectPath, "ObjectData");
+
+                    if (!Directory.Exists(objectDataPath))
+                    {
+                        Console.WriteLine($"[Warnung] ObjectData fehlt: {objectDataPath}");
                         continue;
                     }
-                    Console.WriteLine("missing : " + name);
+
+                    foreach (string file in Directory.GetFiles(objectDataPath))
+                    {
+                        string name = Path.GetFileNameWithoutExtension(file);
+
+                        if (!ObjectParameters.ContainsKey(name))
+                        {
+                            Console.WriteLine("Missing: " + name);
+                        }
+                    }
                 }
+
             }
         }
         private void CollectObjectParameter(ref ObjectInfo info, ObjList objList, Category category)

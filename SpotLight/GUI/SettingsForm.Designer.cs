@@ -71,17 +71,19 @@ namespace Spotlight.GUI
             // GamePathLabel
             // 
             this.GamePathLabel.AutoSize = true;
-            this.GamePathLabel.Location = new System.Drawing.Point(12, 15);
+            this.GamePathLabel.Location = new System.Drawing.Point(22, 28);
+            this.GamePathLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.GamePathLabel.Name = "GamePathLabel";
-            this.GamePathLabel.Size = new System.Drawing.Size(83, 13);
+            this.GamePathLabel.Size = new System.Drawing.Size(153, 25);
             this.GamePathLabel.TabIndex = 0;
             this.GamePathLabel.Text = "Game Directory:";
             // 
             // GamePathButton
             // 
-            this.GamePathButton.Location = new System.Drawing.Point(575, 12);
+            this.GamePathButton.Location = new System.Drawing.Point(1054, 22);
+            this.GamePathButton.Margin = new System.Windows.Forms.Padding(6);
             this.GamePathButton.Name = "GamePathButton";
-            this.GamePathButton.Size = new System.Drawing.Size(35, 20);
+            this.GamePathButton.Size = new System.Drawing.Size(64, 37);
             this.GamePathButton.TabIndex = 2;
             this.GamePathButton.Text = "· · ·";
             this.GamePathButton.UseVisualStyleBackColor = true;
@@ -89,9 +91,10 @@ namespace Spotlight.GUI
             // 
             // RebuildDatabaseButton
             // 
-            this.RebuildDatabaseButton.Location = new System.Drawing.Point(6, 19);
+            this.RebuildDatabaseButton.Location = new System.Drawing.Point(11, 35);
+            this.RebuildDatabaseButton.Margin = new System.Windows.Forms.Padding(6);
             this.RebuildDatabaseButton.Name = "RebuildDatabaseButton";
-            this.RebuildDatabaseButton.Size = new System.Drawing.Size(108, 23);
+            this.RebuildDatabaseButton.Size = new System.Drawing.Size(198, 42);
             this.RebuildDatabaseButton.TabIndex = 3;
             this.RebuildDatabaseButton.Text = "Rebuild";
             this.RebuildDatabaseButton.UseVisualStyleBackColor = true;
@@ -103,9 +106,11 @@ namespace Spotlight.GUI
             this.ObjectParameterGroupBox.Controls.Add(this.ClearDescriptionsButton);
             this.ObjectParameterGroupBox.Controls.Add(this.DatabaseInfoLabel);
             this.ObjectParameterGroupBox.Controls.Add(this.RebuildDatabaseButton);
-            this.ObjectParameterGroupBox.Location = new System.Drawing.Point(12, 64);
+            this.ObjectParameterGroupBox.Location = new System.Drawing.Point(22, 118);
+            this.ObjectParameterGroupBox.Margin = new System.Windows.Forms.Padding(6);
             this.ObjectParameterGroupBox.Name = "ObjectParameterGroupBox";
-            this.ObjectParameterGroupBox.Size = new System.Drawing.Size(598, 78);
+            this.ObjectParameterGroupBox.Padding = new System.Windows.Forms.Padding(6);
+            this.ObjectParameterGroupBox.Size = new System.Drawing.Size(1096, 144);
             this.ObjectParameterGroupBox.TabIndex = 4;
             this.ObjectParameterGroupBox.TabStop = false;
             this.ObjectParameterGroupBox.Text = "Databases";
@@ -113,17 +118,19 @@ namespace Spotlight.GUI
             // DescriptionInfoLabel
             // 
             this.DescriptionInfoLabel.AutoSize = true;
-            this.DescriptionInfoLabel.Location = new System.Drawing.Point(120, 53);
+            this.DescriptionInfoLabel.Location = new System.Drawing.Point(220, 98);
+            this.DescriptionInfoLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.DescriptionInfoLabel.Name = "DescriptionInfoLabel";
-            this.DescriptionInfoLabel.Size = new System.Drawing.Size(341, 13);
+            this.DescriptionInfoLabel.Size = new System.Drawing.Size(631, 25);
             this.DescriptionInfoLabel.TabIndex = 6;
             this.DescriptionInfoLabel.Text = "Descriptions Last Edited on: [DATABASEGENDATE].    Version: [VER]";
             // 
             // ClearDescriptionsButton
             // 
-            this.ClearDescriptionsButton.Location = new System.Drawing.Point(6, 48);
+            this.ClearDescriptionsButton.Location = new System.Drawing.Point(11, 89);
+            this.ClearDescriptionsButton.Margin = new System.Windows.Forms.Padding(6);
             this.ClearDescriptionsButton.Name = "ClearDescriptionsButton";
-            this.ClearDescriptionsButton.Size = new System.Drawing.Size(108, 23);
+            this.ClearDescriptionsButton.Size = new System.Drawing.Size(198, 42);
             this.ClearDescriptionsButton.TabIndex = 5;
             this.ClearDescriptionsButton.Text = "Clear";
             this.ClearDescriptionsButton.UseVisualStyleBackColor = true;
@@ -132,9 +139,10 @@ namespace Spotlight.GUI
             // DatabaseInfoLabel
             // 
             this.DatabaseInfoLabel.AutoSize = true;
-            this.DatabaseInfoLabel.Location = new System.Drawing.Point(120, 24);
+            this.DatabaseInfoLabel.Location = new System.Drawing.Point(220, 44);
+            this.DatabaseInfoLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.DatabaseInfoLabel.Name = "DatabaseInfoLabel";
-            this.DatabaseInfoLabel.Size = new System.Drawing.Size(319, 13);
+            this.DatabaseInfoLabel.Size = new System.Drawing.Size(590, 25);
             this.DatabaseInfoLabel.TabIndex = 4;
             this.DatabaseInfoLabel.Text = "Database Last Built on: [DATABASEGENDATE].    Version: [VER]";
             // 
@@ -145,9 +153,11 @@ namespace Spotlight.GUI
             this.RenderingGroupBox.Controls.Add(this.PlayerLabel);
             this.RenderingGroupBox.Controls.Add(this.PlayerComboBox);
             this.RenderingGroupBox.Controls.Add(this.RenderAreaCheckBox);
-            this.RenderingGroupBox.Location = new System.Drawing.Point(12, 148);
+            this.RenderingGroupBox.Location = new System.Drawing.Point(22, 273);
+            this.RenderingGroupBox.Margin = new System.Windows.Forms.Padding(6);
             this.RenderingGroupBox.Name = "RenderingGroupBox";
-            this.RenderingGroupBox.Size = new System.Drawing.Size(598, 75);
+            this.RenderingGroupBox.Padding = new System.Windows.Forms.Padding(6);
+            this.RenderingGroupBox.Size = new System.Drawing.Size(1096, 138);
             this.RenderingGroupBox.TabIndex = 5;
             this.RenderingGroupBox.TabStop = false;
             this.RenderingGroupBox.Text = "Rendering";
@@ -157,9 +167,10 @@ namespace Spotlight.GUI
             this.RenderTransparentWallsCheckBox.AutoSize = true;
             this.RenderTransparentWallsCheckBox.Checked = true;
             this.RenderTransparentWallsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.RenderTransparentWallsCheckBox.Location = new System.Drawing.Point(298, 19);
+            this.RenderTransparentWallsCheckBox.Location = new System.Drawing.Point(546, 35);
+            this.RenderTransparentWallsCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.RenderTransparentWallsCheckBox.Name = "RenderTransparentWallsCheckBox";
-            this.RenderTransparentWallsCheckBox.Size = new System.Drawing.Size(147, 17);
+            this.RenderTransparentWallsCheckBox.Size = new System.Drawing.Size(261, 29);
             this.RenderTransparentWallsCheckBox.TabIndex = 4;
             this.RenderTransparentWallsCheckBox.Text = "Render TransparentWalls";
             this.RenderTransparentWallsCheckBox.UseVisualStyleBackColor = true;
@@ -170,9 +181,10 @@ namespace Spotlight.GUI
             this.RenderSkyboxesCheckBox.AutoSize = true;
             this.RenderSkyboxesCheckBox.Checked = true;
             this.RenderSkyboxesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.RenderSkyboxesCheckBox.Location = new System.Drawing.Point(149, 19);
+            this.RenderSkyboxesCheckBox.Location = new System.Drawing.Point(273, 35);
+            this.RenderSkyboxesCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.RenderSkyboxesCheckBox.Name = "RenderSkyboxesCheckBox";
-            this.RenderSkyboxesCheckBox.Size = new System.Drawing.Size(110, 17);
+            this.RenderSkyboxesCheckBox.Size = new System.Drawing.Size(193, 29);
             this.RenderSkyboxesCheckBox.TabIndex = 3;
             this.RenderSkyboxesCheckBox.Text = "Render Skyboxes";
             this.RenderSkyboxesCheckBox.UseVisualStyleBackColor = true;
@@ -181,9 +193,10 @@ namespace Spotlight.GUI
             // PlayerLabel
             // 
             this.PlayerLabel.AutoSize = true;
-            this.PlayerLabel.Location = new System.Drawing.Point(6, 45);
+            this.PlayerLabel.Location = new System.Drawing.Point(11, 83);
+            this.PlayerLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.PlayerLabel.Name = "PlayerLabel";
-            this.PlayerLabel.Size = new System.Drawing.Size(39, 13);
+            this.PlayerLabel.Size = new System.Drawing.Size(73, 25);
             this.PlayerLabel.TabIndex = 2;
             this.PlayerLabel.Text = "Player:";
             // 
@@ -198,9 +211,10 @@ namespace Spotlight.GUI
             "Peach",
             "Toad",
             "Rosalina"});
-            this.PlayerComboBox.Location = new System.Drawing.Point(86, 42);
+            this.PlayerComboBox.Location = new System.Drawing.Point(158, 78);
+            this.PlayerComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.PlayerComboBox.Name = "PlayerComboBox";
-            this.PlayerComboBox.Size = new System.Drawing.Size(106, 21);
+            this.PlayerComboBox.Size = new System.Drawing.Size(191, 32);
             this.PlayerComboBox.TabIndex = 1;
             this.PlayerComboBox.SelectedIndexChanged += new System.EventHandler(this.PlayerComboBox_SelectedIndexChanged);
             // 
@@ -209,9 +223,10 @@ namespace Spotlight.GUI
             this.RenderAreaCheckBox.AutoSize = true;
             this.RenderAreaCheckBox.Checked = true;
             this.RenderAreaCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.RenderAreaCheckBox.Location = new System.Drawing.Point(6, 19);
+            this.RenderAreaCheckBox.Location = new System.Drawing.Point(11, 35);
+            this.RenderAreaCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.RenderAreaCheckBox.Name = "RenderAreaCheckBox";
-            this.RenderAreaCheckBox.Size = new System.Drawing.Size(91, 17);
+            this.RenderAreaCheckBox.Size = new System.Drawing.Size(158, 29);
             this.RenderAreaCheckBox.TabIndex = 0;
             this.RenderAreaCheckBox.Text = "Render Areas";
             this.RenderAreaCheckBox.UseVisualStyleBackColor = true;
@@ -221,9 +236,11 @@ namespace Spotlight.GUI
             // 
             this.LoadingAndSavingGroupBox.Controls.Add(this.DoNotLoadTexturesCheckBox);
             this.LoadingAndSavingGroupBox.Controls.Add(this.UniqueIDsCheckBox);
-            this.LoadingAndSavingGroupBox.Location = new System.Drawing.Point(12, 229);
+            this.LoadingAndSavingGroupBox.Location = new System.Drawing.Point(22, 423);
+            this.LoadingAndSavingGroupBox.Margin = new System.Windows.Forms.Padding(6);
             this.LoadingAndSavingGroupBox.Name = "LoadingAndSavingGroupBox";
-            this.LoadingAndSavingGroupBox.Size = new System.Drawing.Size(598, 63);
+            this.LoadingAndSavingGroupBox.Padding = new System.Windows.Forms.Padding(6);
+            this.LoadingAndSavingGroupBox.Size = new System.Drawing.Size(1096, 116);
             this.LoadingAndSavingGroupBox.TabIndex = 6;
             this.LoadingAndSavingGroupBox.TabStop = false;
             this.LoadingAndSavingGroupBox.Text = "Loading and Saving";
@@ -231,9 +248,10 @@ namespace Spotlight.GUI
             // DoNotLoadTexturesCheckBox
             // 
             this.DoNotLoadTexturesCheckBox.AutoSize = true;
-            this.DoNotLoadTexturesCheckBox.Location = new System.Drawing.Point(9, 40);
+            this.DoNotLoadTexturesCheckBox.Location = new System.Drawing.Point(16, 74);
+            this.DoNotLoadTexturesCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.DoNotLoadTexturesCheckBox.Name = "DoNotLoadTexturesCheckBox";
-            this.DoNotLoadTexturesCheckBox.Size = new System.Drawing.Size(296, 17);
+            this.DoNotLoadTexturesCheckBox.Size = new System.Drawing.Size(538, 29);
             this.DoNotLoadTexturesCheckBox.TabIndex = 1;
             this.DoNotLoadTexturesCheckBox.Text = "Don\'t load textures (speeds up loading on so many levels)";
             this.DoNotLoadTexturesCheckBox.UseVisualStyleBackColor = true;
@@ -242,9 +260,10 @@ namespace Spotlight.GUI
             // UniqueIDsCheckBox
             // 
             this.UniqueIDsCheckBox.AutoSize = true;
-            this.UniqueIDsCheckBox.Location = new System.Drawing.Point(9, 19);
+            this.UniqueIDsCheckBox.Location = new System.Drawing.Point(16, 35);
+            this.UniqueIDsCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.UniqueIDsCheckBox.Name = "UniqueIDsCheckBox";
-            this.UniqueIDsCheckBox.Size = new System.Drawing.Size(428, 17);
+            this.UniqueIDsCheckBox.Size = new System.Drawing.Size(778, 29);
             this.UniqueIDsCheckBox.TabIndex = 0;
             this.UniqueIDsCheckBox.Text = "Only load unique ObjectIDs (disable if objects disappear when loading a custom le" +
     "vel)";
@@ -256,9 +275,10 @@ namespace Spotlight.GUI
             this.ResetSpotlightButton.BackColor = System.Drawing.Color.Maroon;
             this.ResetSpotlightButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ResetSpotlightButton.ForeColor = System.Drawing.Color.OrangeRed;
-            this.ResetSpotlightButton.Location = new System.Drawing.Point(522, 25);
+            this.ResetSpotlightButton.Location = new System.Drawing.Point(957, 46);
+            this.ResetSpotlightButton.Margin = new System.Windows.Forms.Padding(6);
             this.ResetSpotlightButton.Name = "ResetSpotlightButton";
-            this.ResetSpotlightButton.Size = new System.Drawing.Size(74, 23);
+            this.ResetSpotlightButton.Size = new System.Drawing.Size(136, 42);
             this.ResetSpotlightButton.TabIndex = 7;
             this.ResetSpotlightButton.Text = "Reset";
             this.ResetSpotlightButton.UseVisualStyleBackColor = false;
@@ -267,9 +287,10 @@ namespace Spotlight.GUI
             // IDEditingCheckBox
             // 
             this.IDEditingCheckBox.AutoSize = true;
-            this.IDEditingCheckBox.Location = new System.Drawing.Point(9, 19);
+            this.IDEditingCheckBox.Location = new System.Drawing.Point(16, 35);
+            this.IDEditingCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.IDEditingCheckBox.Name = "IDEditingCheckBox";
-            this.IDEditingCheckBox.Size = new System.Drawing.Size(108, 17);
+            this.IDEditingCheckBox.Size = new System.Drawing.Size(187, 29);
             this.IDEditingCheckBox.TabIndex = 8;
             this.IDEditingCheckBox.Text = "Enable ID Editing";
             this.IDEditingCheckBox.UseVisualStyleBackColor = true;
@@ -278,18 +299,21 @@ namespace Spotlight.GUI
             // EditingGroupBox
             // 
             this.EditingGroupBox.Controls.Add(this.IDEditingCheckBox);
-            this.EditingGroupBox.Location = new System.Drawing.Point(12, 298);
+            this.EditingGroupBox.Location = new System.Drawing.Point(22, 550);
+            this.EditingGroupBox.Margin = new System.Windows.Forms.Padding(6);
             this.EditingGroupBox.Name = "EditingGroupBox";
-            this.EditingGroupBox.Size = new System.Drawing.Size(598, 52);
+            this.EditingGroupBox.Padding = new System.Windows.Forms.Padding(6);
+            this.EditingGroupBox.Size = new System.Drawing.Size(1096, 96);
             this.EditingGroupBox.TabIndex = 9;
             this.EditingGroupBox.TabStop = false;
             this.EditingGroupBox.Text = "Editing";
             // 
             // ProjectPathButton
             // 
-            this.ProjectPathButton.Location = new System.Drawing.Point(575, 38);
+            this.ProjectPathButton.Location = new System.Drawing.Point(1054, 70);
+            this.ProjectPathButton.Margin = new System.Windows.Forms.Padding(6);
             this.ProjectPathButton.Name = "ProjectPathButton";
-            this.ProjectPathButton.Size = new System.Drawing.Size(35, 20);
+            this.ProjectPathButton.Size = new System.Drawing.Size(64, 37);
             this.ProjectPathButton.TabIndex = 12;
             this.ProjectPathButton.Text = "· · ·";
             this.ProjectPathButton.UseVisualStyleBackColor = true;
@@ -298,9 +322,10 @@ namespace Spotlight.GUI
             // ProjectPathLabel
             // 
             this.ProjectPathLabel.AutoSize = true;
-            this.ProjectPathLabel.Location = new System.Drawing.Point(12, 41);
+            this.ProjectPathLabel.Location = new System.Drawing.Point(22, 76);
+            this.ProjectPathLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.ProjectPathLabel.Name = "ProjectPathLabel";
-            this.ProjectPathLabel.Size = new System.Drawing.Size(88, 13);
+            this.ProjectPathLabel.Size = new System.Drawing.Size(160, 25);
             this.ProjectPathLabel.TabIndex = 10;
             this.ProjectPathLabel.Text = "Project Directory:";
             // 
@@ -313,18 +338,21 @@ namespace Spotlight.GUI
             this.MiscellaneousGroupBox.Controls.Add(this.LanguageComboBox);
             this.MiscellaneousGroupBox.Controls.Add(this.LanguageLabel);
             this.MiscellaneousGroupBox.Controls.Add(this.ResetSpotlightButton);
-            this.MiscellaneousGroupBox.Location = new System.Drawing.Point(12, 356);
+            this.MiscellaneousGroupBox.Location = new System.Drawing.Point(22, 657);
+            this.MiscellaneousGroupBox.Margin = new System.Windows.Forms.Padding(6);
             this.MiscellaneousGroupBox.Name = "MiscellaneousGroupBox";
-            this.MiscellaneousGroupBox.Size = new System.Drawing.Size(598, 51);
+            this.MiscellaneousGroupBox.Padding = new System.Windows.Forms.Padding(6);
+            this.MiscellaneousGroupBox.Size = new System.Drawing.Size(1096, 94);
             this.MiscellaneousGroupBox.TabIndex = 13;
             this.MiscellaneousGroupBox.TabStop = false;
             this.MiscellaneousGroupBox.Text = "Miscellaneous";
             // 
             // SplashTestButton
             // 
-            this.SplashTestButton.Location = new System.Drawing.Point(354, 19);
+            this.SplashTestButton.Location = new System.Drawing.Point(649, 35);
+            this.SplashTestButton.Margin = new System.Windows.Forms.Padding(6);
             this.SplashTestButton.Name = "SplashTestButton";
-            this.SplashTestButton.Size = new System.Drawing.Size(62, 21);
+            this.SplashTestButton.Size = new System.Drawing.Size(114, 39);
             this.SplashTestButton.TabIndex = 12;
             this.SplashTestButton.Text = "Test";
             this.SplashTestButton.UseVisualStyleBackColor = true;
@@ -338,27 +366,30 @@ namespace Spotlight.GUI
             "846x462",
             "1280x720",
             "1920x1080"});
-            this.SplashSizeComboBox.Location = new System.Drawing.Point(268, 19);
+            this.SplashSizeComboBox.Location = new System.Drawing.Point(491, 35);
+            this.SplashSizeComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.SplashSizeComboBox.Name = "SplashSizeComboBox";
-            this.SplashSizeComboBox.Size = new System.Drawing.Size(80, 21);
+            this.SplashSizeComboBox.Size = new System.Drawing.Size(143, 32);
             this.SplashSizeComboBox.TabIndex = 11;
             this.SplashSizeComboBox.SelectedIndexChanged += new System.EventHandler(this.SplashSizeComboBox_SelectedIndexChanged);
             // 
             // SplashSizeLabel
             // 
             this.SplashSizeLabel.AutoSize = true;
-            this.SplashSizeLabel.Location = new System.Drawing.Point(199, 22);
+            this.SplashSizeLabel.Location = new System.Drawing.Point(365, 41);
+            this.SplashSizeLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.SplashSizeLabel.Name = "SplashSizeLabel";
-            this.SplashSizeLabel.Size = new System.Drawing.Size(65, 13);
+            this.SplashSizeLabel.Size = new System.Drawing.Size(123, 25);
             this.SplashSizeLabel.TabIndex = 10;
             this.SplashSizeLabel.Text = "Splash Size:";
             // 
             // DarkModeCheckBox
             // 
             this.DarkModeCheckBox.AutoSize = true;
-            this.DarkModeCheckBox.Location = new System.Drawing.Point(426, 22);
+            this.DarkModeCheckBox.Location = new System.Drawing.Point(781, 41);
+            this.DarkModeCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.DarkModeCheckBox.Name = "DarkModeCheckBox";
-            this.DarkModeCheckBox.Size = new System.Drawing.Size(108, 17);
+            this.DarkModeCheckBox.Size = new System.Drawing.Size(146, 29);
             this.DarkModeCheckBox.TabIndex = 8;
             this.DarkModeCheckBox.Text = "Dark Theme";
             this.DarkModeCheckBox.UseVisualStyleBackColor = true;
@@ -370,28 +401,31 @@ namespace Spotlight.GUI
             this.LanguageComboBox.FormattingEnabled = true;
             this.LanguageComboBox.Items.AddRange(new object[] {
             "English"});
-            this.LanguageComboBox.Location = new System.Drawing.Point(95, 19);
+            this.LanguageComboBox.Location = new System.Drawing.Point(174, 35);
+            this.LanguageComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.LanguageComboBox.Name = "LanguageComboBox";
-            this.LanguageComboBox.Size = new System.Drawing.Size(97, 21);
+            this.LanguageComboBox.Size = new System.Drawing.Size(174, 32);
             this.LanguageComboBox.TabIndex = 9;
             this.LanguageComboBox.SelectedIndexChanged += new System.EventHandler(this.LanguageComboBox_SelectedIndexChanged);
             // 
             // LanguageLabel
             // 
             this.LanguageLabel.AutoSize = true;
-            this.LanguageLabel.Location = new System.Drawing.Point(6, 22);
+            this.LanguageLabel.Location = new System.Drawing.Point(11, 41);
+            this.LanguageLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LanguageLabel.Name = "LanguageLabel";
-            this.LanguageLabel.Size = new System.Drawing.Size(58, 13);
+            this.LanguageLabel.Size = new System.Drawing.Size(106, 25);
             this.LanguageLabel.TabIndex = 8;
             this.LanguageLabel.Text = "Language:";
             // 
             // ProjectPathTextBox
             // 
             this.ProjectPathTextBox.FilterSuggestions = false;
-            this.ProjectPathTextBox.Location = new System.Drawing.Point(135, 38);
+            this.ProjectPathTextBox.Location = new System.Drawing.Point(248, 70);
+            this.ProjectPathTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.ProjectPathTextBox.Name = "ProjectPathTextBox";
             this.ProjectPathTextBox.PossibleSuggestions = new string[0];
-            this.ProjectPathTextBox.Size = new System.Drawing.Size(434, 20);
+            this.ProjectPathTextBox.Size = new System.Drawing.Size(792, 29);
             this.ProjectPathTextBox.SuggestClear = true;
             this.ProjectPathTextBox.TabIndex = 14;
             this.ProjectPathTextBox.ValueEntered += new System.ComponentModel.CancelEventHandler(this.ProjectPathTextBox_ValueEntered);
@@ -399,19 +433,20 @@ namespace Spotlight.GUI
             // GamePathTextBox
             // 
             this.GamePathTextBox.FilterSuggestions = false;
-            this.GamePathTextBox.Location = new System.Drawing.Point(135, 13);
+            this.GamePathTextBox.Location = new System.Drawing.Point(248, 24);
+            this.GamePathTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.GamePathTextBox.Name = "GamePathTextBox";
             this.GamePathTextBox.PossibleSuggestions = new string[0];
-            this.GamePathTextBox.Size = new System.Drawing.Size(434, 20);
+            this.GamePathTextBox.Size = new System.Drawing.Size(792, 29);
             this.GamePathTextBox.SuggestClear = false;
             this.GamePathTextBox.TabIndex = 8;
             this.GamePathTextBox.ValueEntered += new System.ComponentModel.CancelEventHandler(this.GamePathTextBox_ValueEntered);
             // 
             // SettingsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 421);
+            this.ClientSize = new System.Drawing.Size(1140, 761);
             this.Controls.Add(this.ProjectPathTextBox);
             this.Controls.Add(this.GamePathTextBox);
             this.Controls.Add(this.MiscellaneousGroupBox);
@@ -425,10 +460,12 @@ namespace Spotlight.GUI
             this.Controls.Add(this.GamePathLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SettingsForm";
             this.Text = "Spotlight - Settings";
+            this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.ObjectParameterGroupBox.ResumeLayout(false);
             this.ObjectParameterGroupBox.PerformLayout();
             this.RenderingGroupBox.ResumeLayout(false);
@@ -454,7 +491,7 @@ namespace Spotlight.GUI
         private System.Windows.Forms.Label DescriptionInfoLabel;
         private System.Windows.Forms.Button ClearDescriptionsButton;
         private System.Windows.Forms.GroupBox RenderingGroupBox;
-        private System.Windows.Forms.CheckBox RenderAreaCheckBox;
+        public System.Windows.Forms.CheckBox RenderAreaCheckBox;
         private System.Windows.Forms.Label PlayerLabel;
         private System.Windows.Forms.ComboBox PlayerComboBox;
         private System.Windows.Forms.CheckBox RenderSkyboxesCheckBox;

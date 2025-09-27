@@ -24,16 +24,21 @@ using SARCExt;
 using BYAML;
 using Syroot.BinaryData;
 
+
 namespace Spotlight.GUI
 {
     public partial class LevelEditorForm : Form
     {
         LevelParameterForm LPF;
         SM3DWorldScene currentScene;
+        public SettingsForm SettingsFormInstance;
+
+
 
         #region keystrokes for 3d view only
         Keys KS_AddObject = KeyStroke("Shift+A");
         Keys KS_DeleteSelected = KeyStroke("Delete");
+        Keys KS_RenderAreas = KeyStroke("NumPad1");
         #endregion
 
 #if ODYSSEY
@@ -51,6 +56,13 @@ namespace Spotlight.GUI
         protected override bool ProcessKeyPreview(ref Message m)
         {
             Keys keyData = (Keys)(unchecked((int)(long)m.WParam)) | ModifierKeys;
+            if (keyData == KS_RenderAreas)
+            {
+                Properties.Settings.Default.DrawAreas = false;
+
+            }
+
+
 
             if (LevelGLControlModern.IsHovered)
             {
@@ -228,7 +240,7 @@ namespace Spotlight.GUI
                             });
                             DatabaseGenThread.Start();
                             Program.ParameterDB = new ObjectParameterDatabase();
-                            Program.ParameterDB.Create(new List<string>([Program.GamePath, Program.ProjectPath]));
+                            Program.ParameterDB.Create(new List<string>(new[] { Program.GamePath, Program.ProjectPath }));
                             Program.ParameterDB.Save(Program.SOPDPath);
                             if (DatabaseGenThread.IsAlive)
                                 LoadLevelForm.DoClose = true;
@@ -1597,7 +1609,7 @@ namespace Spotlight.GUI
         /// </summary>
         public void Localize()
         {
-            Text = Program.CurrentLanguage.GetTranslation("EditorTitle") ?? "Spotlight";
+            Text = Program.CurrentLanguage.GetTranslation("EditorTitle") ?? "Moonlight";
 
 
             #region Controls
@@ -1648,28 +1660,28 @@ namespace Spotlight.GUI
         string WelcomeMessageHeader = "Introduction";
         [Program.Localized]
         string WelcomeMessageText =
-@"Welcome to Spotlight!
+@"Welcome to Moonlight!
 
-In order to use this program, you will need the folders ""StageData"" and ""ObjectData"" from Super Mario 3D World
+In order to use this program, you will need the folders ""StageData"" and ""ObjectData"" from Super Mario Odyssey
 
 Please select the folder than contains these folders";
         [Program.Localized]
-        string StatusWelcomeMessage = "Welcome to Spotlight!";
+        string StatusWelcomeMessage = "Welcome to Moonlight!";
         [Program.Localized]
         string StatusWelcomeBackMessage = "Welcome back!";
         [Program.Localized]
-        string DatabasePickerTitle = "Select the Game Directory of Super Mario 3D World";
+        string DatabasePickerTitle = "Select the Game Directory of Super Mario Odyssey";
         [Program.Localized]
         string InvalidGamepathText = "The Directory doesn't contain ObjectData and StageData.";
         [Program.Localized]
         string InvalidGamepathHeader = "The GamePath is invalid";
         [Program.Localized]
         string DatabaseMissingText =
-@"Spotlight could not find the Object Parameter Database (ParameterDatabase.sopd)
+@"Moonlight could not find the Object Parameter Database (ParameterDatabase.sopd)
 
-Spotlight needs an Object Parameter Database in order for you to add objects.
+Moonlight needs an Object Parameter Database in order for you to add objects.
 
-Would you like to generate a new object Database from your 3DW Directory?";
+Would you like to generate a new object Database from your SMO Directory?";
         [Program.Localized]
         string DatabaseMissingHeader = "Database Missing";
         [Program.Localized]
@@ -1680,7 +1692,7 @@ Would you like to generate a new object Database from your 3DW Directory?";
         string DatabaseOutdatedText =
                 @"The Loaded Database is outdated ({0}).
 The latest Database version is {1}.
-Would you like to rebuild the database from your 3DW Files?";
+Would you like to rebuild the database from your SMO Files?";
         [Program.Localized]
         string DatabaseOutdatedHeader = "Database Outdated";
 
@@ -1714,7 +1726,7 @@ Would you like to rebuild the database from your 3DW Files?";
         [Program.Localized]
         string StatusObjectsDeletedMessage = "Deleted {0}";
         [Program.Localized]
-        string DatabaseInvalidText = "The Database is invalid, and you cannot add objects without one. Would you like to generate one from your SM3DW Files?";
+        string DatabaseInvalidText = "The Database is invalid, and you cannot add objects without one. Would you like to generate one from your SMO Files?";
         [Program.Localized]
         string DatabaseInvalidHeader = "Invalid Database";
         [Program.Localized]
@@ -1727,7 +1739,7 @@ Would you like to rebuild the database from your 3DW Files?";
         [Program.Localized]
         string StatusMovedFromLinksMessage = "Moved to the Appropriate List";
         [Program.Localized]
-        string UpdateReadyText = "Spotlight Version {0} is currently available for download! Would you like to visit the Download Page?";
+        string UpdateReadyText = "Moonlight Version {0} is currently available for download! Would you like to visit the Download Page?";
         [Program.Localized]
         string UpdateReadyHeader = "Update Ready!";
         [Program.Localized]
@@ -1999,5 +2011,12 @@ Would you like to rebuild the database from your 3DW Files?";
             TextRenderer.DrawText(e.Graphics, page.Text, e.Font, rect, foreColor,
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
         }
+
+        private void LevelEditorForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
+
 }

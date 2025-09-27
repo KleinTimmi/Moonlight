@@ -72,7 +72,7 @@ namespace Spotlight
             this.FilterZonesCheckbox.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FilterZonesCheckbox.Location = new System.Drawing.Point(0, 3);
             this.FilterZonesCheckbox.Name = "FilterZonesCheckbox";
-            this.FilterZonesCheckbox.Size = new System.Drawing.Size(97, 29);
+            this.FilterZonesCheckbox.Size = new System.Drawing.Size(136, 29);
             this.FilterZonesCheckbox.TabIndex = 3;
             this.FilterZonesCheckbox.Text = "Filter Zones";
             this.FilterZonesCheckbox.UseVisualStyleBackColor = true;
@@ -125,7 +125,7 @@ namespace Spotlight
             this.label1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 17);
+            this.label1.Size = new System.Drawing.Size(69, 25);
             this.label1.TabIndex = 5;
             this.label1.Text = "Search";
             // 
@@ -133,9 +133,9 @@ namespace Spotlight
             // 
             this.SearchTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SearchTextBox.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchTextBox.Location = new System.Drawing.Point(47, 0);
+            this.SearchTextBox.Location = new System.Drawing.Point(69, 0);
             this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(319, 25);
+            this.SearchTextBox.Size = new System.Drawing.Size(297, 32);
             this.SearchTextBox.TabIndex = 6;
             // 
             // panel1
