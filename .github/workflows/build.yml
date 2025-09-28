@@ -1,0 +1,36 @@
+name: Build Moonlight 
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Spotlight
+        uses: actions/checkout@v3
+
+      - name: Clone GL_EditorFramework
+        run: git clone https://github.com/jupahe64/GL_EditorFramework.git ../GL_EditorFramework
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore NuGet packages
+        run: nuget restore Spotlight.sln
+
+      - name: Build Solution
+        run: msbuild Spotlight.sln /p:Configuration=Release /p:Platform="Any CPU"
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Spotlight-Build
+          path: Spotlight/bin/Release/**
