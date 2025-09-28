@@ -22,8 +22,6 @@ jobs:
       - name: Clone GL_EditorFramework
         run: git clone https://github.com/jupahe64/GL_EditorFramework.git ../GL_EditorFramework
 
-      - name: Clone FileFormats3DW
-        run: git clone https://github.com/jupahe64/FileFormats3DW.git ../FileFormats3DW
 
       # 3. Setup MSBuild
       - name: Setup MSBuild
