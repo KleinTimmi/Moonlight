@@ -39,12 +39,6 @@ jobs:
       - name: Build Solution
         run: msbuild Spotlight.sln /p:Configuration=${{ matrix.configuration }} /p:Platform="${{ matrix.platform }}"
 
-      # 7. Copy Splash resources to output
-      - name: Copy Splash resources
-        run: |
-          mkdir -p Spotlight/bin/${{ matrix.configuration }}/Splash
-          cp -r Splash/* Spotlight/bin/${{ matrix.configuration }}/Splash/
-
       # 8. Upload build artifacts
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v3
