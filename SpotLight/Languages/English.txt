@@ -1,0 +1,390 @@
+#Base Language File for Moonlight - Super Mario Odyssey Editor
+#These files contain text used by the program, translated for other languages
+#Lines are formatted as follows:
+# <MessageID>|<Text>
+#Where <MessageID> is the internal ID of the message and <Text> is the actual text
+#Lines that start with # are comments.
+# <N> represents a new line
+# </> represents the | character
+# {x} where x is a number indicates that the program is going to fill this space in. Example: The Loaded Database is outdated ({0}). Moonlight replaces the {0} with the outdated database version
+# Blank lines are skipped by the program
+
+LevelEditorFormHeader|Moonlight
+LevelEditorForm.FileToolStripMenuItem|File
+LevelEditorForm.OpenToolStripMenuItem|Open
+LevelEditorForm.OpenExToolStripMenuItem|Open With Selector
+LevelEditorForm.SaveToolStripMenuItem|Save
+LevelEditorForm.SaveAsToolStripMenuItem|Save As
+LevelEditorForm.OptionsToolStripMenuItem|Options
+LevelEditorForm.EditToolStripMenuItem|Edit
+LevelEditorForm.UndoToolStripMenuItem|Undo
+LevelEditorForm.RedoToolStripMenuItem|Redo
+LevelEditorForm.AddObjectToolStripMenuItem|Add Object
+LevelEditorForm.AddZoneToolStripMenuItem|Add Zone
+LevelEditorForm.DuplicateToolStripMenuItem|Duplicate
+LevelEditorForm.DeleteToolStripMenuItem|Delete
+LevelEditorForm.LevelParametersToolStripMenuItem|Level Parameters
+LevelEditorForm.MoveSelectionToToolStripMenuItem|Move Selection To
+LevelEditorForm.MoveToLinkedToolStripMenuItem|Linked Objects
+LevelEditorForm.MoveToAppropriateListsToolStripMenuItem|Appropriate Lists
+LevelEditorForm.SelectionToolStripMenuItem|Selection
+LevelEditorForm.SelectAllToolStripMenuItem|Select All
+LevelEditorForm.DeselectAllToolStripMenuItem|Deselect All
+LevelEditorForm.GrowSelectionToolStripMenuItem|Grow Selection
+LevelEditorForm.SelectAllLinkedToolStripMenuItem|Select All Linked
+LevelEditorForm.ModeToolStripMenuItem|Mode
+LevelEditorForm.EditObjectsToolStripMenuItem|Edit Objects
+LevelEditorForm.EditLinksToolStripMenuItem|Edit Links
+LevelEditorForm.AboutToolStripMenuItem|About
+LevelEditorForm.SpotlightWikiToolStripMenuItem|Moonlight Wiki
+LevelEditorForm.CheckForUpdatesToolStripMenuItem|Check for Updates
+LevelEditorForm.EditIndividualButton|Edit Individual
+LevelEditorForm.CancelAddObjectButton|Cancel
+WelcomeMessageHeader|Introduction
+WelcomeMessageText|Welcome to Moonlight!<N><N>In order to use this program, you will need the folders "StageData" and "ObjectData" from Super Mario Odyssey<N><N>Please select the folder than contains these folders
+StatusWelcomeMessage|Welcome to Moonlight!
+StatusWelcomeBackMessage|Welcome back!
+DatabasePickerTitle|Select the Game Directory of Super Mario Odyssey 
+InvalidGamepathText|The Directory doesn't contain ObjectData and StageData.
+InvalidGamepathHeader|The GamePath is invalid
+DatabaseMissingText|Moonlight could not find the Object Parameter Database (ParameterDatabase.sopd)<N><N>Moonlight needs an Object Parameter Database in order for you to add objects.<N><N>Would you like to generate a new object Database from your SMO Directory?
+DatabaseMissingHeader|Database Missing
+DatabaseExcludeText|Are you sure? You cannot add objects without it.
+DatabaseExcludeHeader|Confirmation
+DatabaseOutdatedText|The Loaded Database is outdated ({0}).<N>The latest Database version is {1}.<N>Would you like to rebuild the database from your 3DW Files?
+DatabaseOutdatedHeader|Database Outdated
+StatusOpenSuccessMessage|{0} has been Loaded successfully.
+StatusWaitMessage|Waiting...
+StatusOpenCancelledMessage|Open Cancelled
+StatusOpenFailedMessage|Open Failed
+StatusLevelSavedMessage|Level Saved!
+StatusSettingsSavedMessage|Settings Saved.
+StatusSaveCancelledOrFailedMessage|Save Cancelled or Failed.
+StatusObjectPlaceNoticeMessage|You have to place the object by clicking, when holding shift multiple objects can be placed
+FileLevelOpenFilter|Level Files (Map)</>Level Files (Design)</>Level Files (Sound)</>All Level Files
+DuplicateNothingMessage|Can't duplicate nothing!
+DuplicateSuccessMessage|Duplicated {0}
+LevelSelectMissing|StageList.szs Could not be found inside {0}, so this feature cannot be used.
+StatusObjectsDeletedMessage|Deleted {0}
+DatabaseInvalidText|The Database is invalid, and you cannot add objects without one. Would you like to generate one from your SM3DW Files?
+DatabaseInvalidHeader|Invalid Database
+DatabaseCreatedText|Database Created
+DatabaseCreatedHeader|Operation Complete
+StatusMovedToLinksMessage|Moved to the Link List
+StatusMovedFromLinksMessage|Moved to the Appropriate List
+UpdateReadyText|Moonlight Version {0} is currently available for download! Would you like to visit the Download Page?
+UpdateReadyHeader|Update Ready!
+UpdateNoneText|You are using the Latest version of Moonlight ({0})
+UpdateNoneHeader|No Updates
+UpdateFailText|Failed to retrieve update information.<N>{0}
+UpdateFailHeader|Connection Failure
+UnsavedChangesText|You have unsaved changes in:<N> {0} Do you want to save them?
+UnsavedChangesHeader|Unsaved Changes!
+StatusLevelClosed|{0} was closed.
+MultipleSelected|Multiple Objects Selected
+NothingSelected|Nothing Selected
+SelectedText|Selected
+MovedToOtherListInfo|{0} was moved to {1}
+NothingMovedToLinkedInfo|All objects stayed in their object list (you held down Shift)
+InvalidStageListFormatText|The format of the StageList.szs in GamePath does not have editing support yet
+InvalidStageListFormatHeader|Invalid Format
+AddObjectFormHeader|Moonlight - Add Object
+AddObjectForm.SearchLabel|Search:
+AddObjectForm.PropertiesLabel|Properties
+AddObjectForm.ToQuickFavoritesButton|To QuickFavorites
+AddObjectForm.SelectObjectButton|Select
+AddObjectForm.ObjectNameLabel|Object Name
+AddObjectForm.ModelNameLabel|Model Name
+AddObjectForm.ObjectsTab|Objects
+AddObjectForm.RailsTab|Rails
+AddObjectForm.AreasTab|Areas
+AddObjectForm.AreaShapeLabel|Area Shape
+UnsavedDescriptionsHeader|Unsafed Changes
+UnsavedDescriptionsFooter|have unsafed changes, do you want to save them?
+LevelParameterFormHeader|Moonlight - Level Parameters
+LevelParameterForm.AddLevelButton|Add Level
+LevelParameterForm.DeleteLevelButton|Delete Level
+LevelParameterForm.SaveToolStripMenuItem|Save
+LevelParameterForm.StageNameLabel|Stage Name:
+LevelParameterForm.StageNameTextBox|No Level Selected
+LevelParameterForm.StageTypeLabel|Stage Type:
+LevelParameterForm.GlobalIDLabel|Global ID:
+LevelParameterForm.StampCheckBox|Has Stamp?
+LevelParameterForm.TimeLabel|Time:
+LevelParameterForm.GreenStarUnlockCountLabel|Green Star Unlock Requirement
+LevelParameterForm.GreenStarLabel|Green Stars:
+LevelParameterForm.DoubleCherryLabel|Double Cherry Max:
+LevelParameterForm.GhostTimeLabel|Mii Ghost Time
+LevelParameterForm.GhostIDLabel|Mii Ghost ID:
+SettingsFormHeader|Moonlight - Settings
+SettingsForm.GamePathLabel|Game Directory:
+SettingsForm.ProjectPathLabel|Project Directory:
+SettingsForm.ObjectParameterGroupBox|Databases
+SettingsForm.RebuildDatabaseButton|Rebuild
+SettingsForm.ClearDescriptionsButton|Clear
+SettingsForm.RenderingGroupBox|Rendering
+SettingsForm.RenderAreaCheckBox|Render Areas
+SettingsForm.RenderSkyboxesCheckBox|Render Skyboxes
+SettingsForm.PlayerLabel|Player:
+SettingsForm.LoadingAndSavingGroupBox|Loading and Saving
+SettingsForm.UniqueIDsCheckBox|Only load unique ObjectIDs (disable if objects disappear when loading a custom level)
+SettingsForm.EditingGroupBox|Editing
+SettingsForm.IDEditingCheckBox|Enable ID Editing
+SettingsForm.MiscellaneousGroupBox|Miscellaneous
+SettingsForm.LanguageLabel|Language:
+SettingsForm.SplashSizeLabel|Splash Size:
+SettingsForm.SplashTestButton|Test
+SettingsForm.ResetSpotlightButton|Reset
+SettingsForm.LoadingAndSavingGroupBox|Loading and Saving
+SettingsForm.UniqueIDsCheckBox|Only load unique ObjectIDs (disable if objects disappear when loading a custom level)
+SettingsForm.EditingGroupBox|Editing
+SettingsForm.IDEditingCheckBox|Enable ID Editing
+SettingsForm.MiscellaneousGroupBox|Miscellaneous
+SettingsForm.LanguageLabel|Language:
+SettingsForm.SplashSizeLabel|Splash Size:
+SettingsForm.SplashTestButton|Test
+SettingsForm.ResetSpotlightButton|Reset
+DatabaseVersionBase|Database Last Built on: [DATABASEGENDATE].    Version: [VER]
+DescriptionVersionBase|Descriptions Last Edited on: [DATABASEGENDATE].    Version: [VER]
+FileDoesntExist|N/A (File doesn't exist)
+FileDeleted|N/A (File was deleted)
+SettingsInvalid|Invalid
+DatabaseOutdated|Outdated
+DatabasePickerTitle|Select the Game Directory of Super Mario 3D World
+InvalidFolder|The Directory doesn't contain ObjectData and StageData.
+InvalidGamePath|The GamePath is invalid
+InvalidProjectPath|The ProjectPath is invalid
+DatabaseRebuildSuccessText|Database has been rebuilt!
+DatabaseRebuildSuccessHeader|Success
+DescriptionClearText|Are you sure you want to empty out your description database?<N>(This action cannot be undone)
+DescriptionClearHeader|Confirmation
+DescriptionClearSuccessText|Descriptions Deleted
+DescriptionClearSuccessHeader|Success
+ResetWarningText|This will reset all your customizations, delete your Object Database and Description Database, and quit Moonlight without saving.<N>Are you sure you want to continue?
+ResetWarningHeader|Warning
+
+#Loadin G. Bar
+LoadingLevelText|Loading Level...
+DatabaseGeneratingText|Generating Database...
+OperationCompleteText|Operation Complete!
+
+#Misc
+EditorTitle|Moonlight
+NoQuickFavourites|No Quick Favorites
+
+OKButton|OK
+CancelButton|Cancel
+
+SaveStageListInProjectText|Would you like to save the StageList.szs to your ProjectPath instead of your BaseGame?
+SaveStageListInProjectHeader|Save in ProjectPath
+SaveInProjectTextPart1|Should the level files be saved to {0} so the BaseGame is preserved?
+SaveInProjectTextPart2|Following files will be overwritten:
+SaveInProjectHeader|Save file in ProjectPath?
+
+PlayerNone|None
+PlayerMario|Mario
+PlayerLuigi|Luigi
+PlayerPeach|Peach
+PlayerToad|Toad
+PlayerRosalina|Rosalina
+
+LevelSelectTitle|Moonlight - Choose a Level
+CourseIDColumnHeader|Course ID
+LevelNameColumnHeader|Level Name
+WorldNameMisc|Miscellaneous
+WorldNameFury|Bowser's Fury
+
+TypeDefInteger|Whole Number
+TypeDefSingle|Decimal Number
+TypeDefString|Text
+TypeDefBoolean|Checkbox
+
+ObjectParametersTitle|Moonlight - Object Parameter Editor
+RemoveParameterText|Remove
+UseProgrammingTermsCheckbox|Use Programming Terms
+GlobalTypeText|Type
+GlobalPropertyNameText|Property Name
+ObjectParameterAddText|Add
+
+ModifiedOutsideText|{0} was modified outside of Moonlight. Should all extra files be reloaded?
+ModifiedOutsideHeader|File Modified
+
+### Level and World Naming ###
+
+# World Names
+WorldName1|World 1
+WorldName2|World 2
+WorldName3|World 3
+WorldName4|World 4
+WorldName5|World 5
+WorldName6|World 6
+WorldName7|World Castle (7)
+WorldName8|World Bowser (8)
+WorldName9|World Star (9)
+WorldName10|World Mushroom (10)
+WorldName11|World Flower (11)
+WorldName12|World Crown (12)
+
+# Level Names
+#<Stage Filename>|<In-game name>
+
+# World 1
+EnterCatMarioStage|Super Bell Hill
+NokonokoCaveStage|Koopa Troopa Cave
+ClimbMountainStage|Mount Beanpole
+DownRiverStage|Plessie's Plunging Falls
+FlipCircusStage|Switch Scramble Circus
+KoopaChaseLv1Stage|Bowser's Highway Showdown
+GateKeeperBullLv1Stage|Chargin' Chuck Blockade
+KinopioBrigadeTentenStage|[CT] Captain Toad Goes Forth
+
+# World 2
+SideWaveDesertStage|Conkdor Canyon
+TouchAndMikeStage|Puffprod Peaks
+ShadowTunnelStage|Shadow-Play Alley
+RotateFieldStage|Really Rolling Hills
+DoubleMarioFieldStage|Double Cherry Pass
+MysteryHouseEnemyStage|[MH] Mystery House Melee
+KillerTankStage|Bowser's Bullet Bill Brigade
+GateKeeperKuribonLv1Stage|Big Galoomba Blockade
+
+# World 3
+SnowBallParkStage|Snowball Park
+ClimbWirenetStage|Chain-Link Charge
+TeresaConveyorStage|Shifty Boo Mansion
+ShortGardenStage|Pretty Plaza Panic
+DokanAquariumStage|Pipeline Lagoon
+DashRidgeStage|Mount Must Dash
+TruckWaterfallStage|Switchboard Falls
+KillerExpressStage|The Bullet Bill Express
+GateKeeperKameckLv1Stage|Magikoopa Blockade
+GateKeeperTentackLv1Stage|A Banquet with Hisstocrat
+KinopioBrigadeWaterStage|[CT] Captain Toad Makes a Splash
+
+# World 4
+CrawlerHillStage|Ant Trooper Hill
+PipePackunDenStage|Piranha Creeper Creek
+ChikaChikaBoomerangStage|Beep Block Skyway
+TrampolineHighlandStage|Big Bounce Byway
+GabonMountainStage|Spike's Lost City
+MysteryHouseDashStage|[MH] Mystery House Mad Dash
+BossGorobonStage|Lava Rock Lair
+GateKeeperGorobonLv1Stage|Brolder Blockade
+GateKeeperFireBrosLv1Stage|Fire Bros. Hideout #1
+
+# World 5
+NokonokoBeachStage|Sunshine Seaside
+SwingCircusStage|Tricky Trapeze Theater
+ShortMultiLiftStage|Backstreet Bustle
+SavannaRockStage|Sprawling Savanna
+BombCaveStage|Bob-ombs Below
+JumpFlipSweetsStage|Cakewalk Flip
+SneakingLightStage|Searchlight Sneak
+GoldenExpressStage|[S] Coin Express
+BossWackunFortressStage|King Ka-thunk's Castle
+GateKeeperBullLv2Stage|Chargin' Chuck Blockade Is Back
+GateKeeperFireBrosLv2Stage|Fire Bros. Hideout #2
+KinopioBrigadeTeresaStage|[CT] Captain Toad Plays Peek-a-Boo
+
+# World 6
+RouteDokanTourStage|Clear Pipe Cruise
+WeavingShipStage|Spooky Seasick Wreck
+KarakuriCastleStage|Hands-On Hall
+JungleCruiseStage|Deep Jungle Drift
+BlastSnowFieldStage|Ty-Foo Flurries
+ClimbFortressStage|Bullet Bill Base
+ChorobonTowerStage|Fuzzy Time Mine
+MysteryHouseBallStage|[MH] Mystery House Throwdown
+BombTankStage|Bowser's Bob-omb Brigade
+GateKeeperKyupponLv1Stage|Prince Bully Blockade
+GateKeeperFireBrosLv3Stage|Fire Bros. Hideout #3
+GateKeeperBossBunretsuLv1Stage|Motley Bossblob's Big Battle
+
+# World Castle (7)
+FireBrosFortressStage|Fort Fire Bros.
+DarkFlipPanelStage|Switchblack Ruins
+ShortAmidaStage|Red-Hot Run
+DonketsuArrowStepStage|Boiling Blue Bully Belt
+ZigzagBuildingStage|Trick Trap Tower
+SyumockSpotStage|Rammerhead Reef
+RagingMagmaStage|Simmering Lava Lake
+KoopaChaseLv2Stage|Bowser's Lava Lake Keep
+GateKeeperGorobonLv2Stage|Brolder Blockade Is Back
+GateKeeperKyupponLv2Stage|Prince Bully Blockade Is Back
+GateKeeperFireBrosLv4Stage|Fire Bros. Hideout #4
+KinopioBrigadeConveyorStage|[CT] Captain Toad Gets Thwomped
+
+# World Bowser (8)
+NeedleBridgeStage|Spiky Spike Bridge
+DownDesertStage|Plessie's Dune Downhill
+GearSweetsStage|Cookie Cogworks
+EchoRoadStage|Footlight Lane
+WaterElevatorCaveStage|Deepwater Dungeon
+DarknessHauntedHouseStage|A Beam in the Dark
+GotogotonValleyStage|Grumblump Inferno
+MysteryHouseClimbStage|[MH] Mystery House Claw Climb
+EnemyExpressStage|The Bowser Express
+KoopaLastStage|The Great Tower of Bowser Land
+GateKeeperBossBunretsuLv2Stage|Motley Bossblob's Encore
+GateKeeperTentackLv2Stage|Hisstocrat Returns
+
+# World Star (9)
+RainbowRoadStage|Rainbow Run
+GalaxyRoadStage|Super Galaxy
+WheelCanyonStage|Rolling Ride Run
+GoalPoleRunawayStage|The Great Goal Pole
+BlockLandStage|Super Block Land
+HexScrollStage|Honeycomb Starway
+GiantUnderGroundStage|Gargantuan Grotto
+TerenFogStage|Peepa's Fog Bog
+BoxKillerStage|Cosmic Cannon Cluster
+KinopioBrigadeRotateRoomStage|[CT] Captain Toad Takes a Spin
+
+# World Mushroom (10)
+ArrangeRotateFieldStage|Night Falls on Really Rolling Hills
+ArrangeClimbMountainStage|Spiky Mount Beanpole
+ArrangeJungleCruiseStage|Deep-Black Jungle Drift
+ArrangeShadowTunnelStage|Trouble in Shadow-Play Alley
+ArrangeKarakuriCastleStage|Back to Hands-On Hall
+ArrangeWeavingShipStage|Gigantic Seasick Wreck
+ArrangeDonketsuArrowStepStage|Broken Blue Bully Belt
+ArrangeMysteryHouseEnemyStage|[MH] Mystery House Brawl
+
+# World Flower (11)
+ArrangeFlipCircusStage|Switch Shock Circus
+ArrangeChorobonTowerStage|Floating Fuzzy Time Mine
+ArrangePipePackunDenStage|Piranha Creeper Creek after Dark
+ArrangeFireBrosFortressStage|Faster Fort Fire Bros.
+ArrangeSavannaRockStage|Sprawling Savanna Rabbit Run
+ArrangeTeresaConveorStage|Shiftier Boo Mansion
+ArrangeDokanAquariumStage|Pipeline Boom Lagoon
+ArrangeChikaChikaBoomerangStage|Blast Block Skyway
+ArrangeNokonokoBeachStage|Towering Sunshine Seaside
+ArrangeHexScrollStage|Honeycomb Skyway
+ArrangeNeedleBridgeStage|Spiky Spike Bridge Sneak
+ArrangeBossParadeStage|Boss Blitz
+
+# World Crown (12)
+ChampionshipStage|Champion's Road
+MysteryHouseMaxStage|[MH] Mystery House Marathon
+KinopioBrigadeInfernoStage|[CT] Captain Toad's Fiery Finale
+
+# Misc
+CourseSelectStage|World Map
+RouletteRoomZone|Lottery Room
+
+# Stamp Houses
+FairyHouseBlueStage|Stamp House (Day)
+FairyHouseNightStage|Stamp House (Night)
+FairyHouseLavaStage|Stamp House (Lava)
+FairyHouseInsideStage|Stamp House (Underground)
+
+# Toad Houses
+KinopioHouseLv1BlueStage|Toad House W1-W2 (Day)
+KinopioHouseLv1InsideStage|Toad House W1-W2 (Underground)
+KinopioHouseLv2BlueStage|Toad House W3-W4 (Day)
+KinopioHouseLv3BlueStage|Toad House W5+ (Day)
+KinopioHouseLv3LavaStage|Toad House W5+ (Lava)
+KinopioHouseLv3NightStage|Toad House W5+ (Night)
+
+#Captain Toad Seasons

@@ -1,0 +1,200 @@
+#Base Language File for Spotlight - Super Mario 3D World Editor
+#These files contain text used by the program, translated for other languages
+#Lines are formatted as follows:
+# <MessageID>|<Text>
+#Where <MessageID> is the internal ID of the message and <Text> is the actual text
+#Lines that start with # are comments.
+# <N> represents a new line
+# </> represents the | character
+# {x} where x is a number indicates that the program is going to fill this space in. Example: The Loaded Database is outdated ({0}). Spotlight replaces the {0} with the outdated database version
+# Blank lines are skipped by the program
+
+#Main Menu
+EditorTitle|Spotlight
+WelcomeMessageHeader|Einführung
+WelcomeMessageText|Willkommen in Spotlight!<N>Um dieses Programm zu benutzen, benötigst du den "StageData" und den "ObjectData" Ordner aus Super Mario 3D World<N><N>Bitte wähle den Ordner aus, der diese beiden Ordner beinhaltet.
+StatusWelcomeMessage|Willkommen in Spotlight!
+StatusWelcomeBackMessage|Willkommen zurück!
+DatabasePickerTitle|Wähle das Verteichniss aus, in dem sich Super Mario 3D World befindet.
+InvalidGamepathText|Das Verzeichniss enthält den "ObjectData" und "StageData" Ordner nicht.
+InvalidGamepathHeader|Das Verzeichniss ist gültig.
+DatabaseMissingText|Spotlight konnte die Objekt Parameter Datenbank nicht finden. (ParameterDatabase.sopd)<N><N>Spotlight braucht eine Objekt Parameter Datenbank um Objekte hinzuzufügen.<N><N>Würdest du gerne aus deinem Spiel eine neue Objekt Parameter Datenbank generieren?
+DatabaseMissingHeader|Die Datenbank fehlt.
+DatabaseExcludeText|Bist du die sicher? Ohne diese, kannst du keine Objekte hinzufügen.
+DatabaseExcludeHeader|Bestätigung
+DatabaseOutdatedHeader|Die gelandene Datenbank ist veraltet. ({0}).<N>Die neuste Version der Datenbank ist {1}.<N>Würdest du gerne aus deinem Spiel eine neue Objekt Parameter Datenbank generieren?
+DatabaseOutdatedHeader|Die Datenbank ist fehlt.
+
+StatusOpenSuccessMessage|{0} wurde erfolgreich geladen.
+StatusWaitMessage|Einen Moment...
+StatusOpenCancelledMessage|Das Öffnen wurde Abgebrochen.
+StatusOpenFailedMessage|Öffnen Fehlgeschlagen.
+StatusLevelSavedMessage|Das Level wurde Gespeichert!
+StatusSettingsSavedMessage|Die Einstellungen wurden Gespeichert.
+StatusSaveCancelledOrFailedMessage|Speichern fehlgeschlagen, oder abgebrochen.
+FileLevelOpenFilter|Level Datein (Map)</>Level Dateien (Design)</>Level Dateien (Sound)</>Alle Level Dateien.
+
+LevelParamsMissingText|StageList.szs fehlt aus {0}\SystemData
+LevelParamsMissingHeader|Die Datei fehlt.
+
+DuplicateNothingMessage|Man kann nicht Nichts duplizieren!
+DuplicateSuccessMessage|Dupliziert. {0}
+
+LevelSelectMissing|StageList.szs Wurde in {0}, nicht gefunden, also kann das Feature nicht genutzt werden.
+LevelSelectCopyText|{0} existiert nicht in dem angegebenen Verzeichnis. Möchtest du eine Kopie in deinem Verzeichnis erstellen?
+LevelSelectCopyHeader|Bestätigung.
+
+StatusObjectsDeletedMessage|Löschen von {0}
+DatabaseInvalidText|Die Datenbank ist ungültig und du kannst keine Objekte ohne eine hinzufügen. Möchtst du eine neue aus dinen SM3DW-Dateien generieren?
+DatabaseInvalidHeader|Ungültige Datenbank
+DatabaseCreatedText|Datenbank erstellt
+DatabaseCreatedHeader|Vorgang abgeschlossen
+
+StatusMovedToLinksMessage|In die Linkliste wurde verschoben
+StatusMovedFromLinksMessage|In die entsprechende Liste wurde verschoben
+UpdateReadyText|Spotlight Version {0} steht derzeit zum Download zur Verfügung! Möchtst du die Download-Seite besuchen?";
+UpdateReadyHeader|Update bereit!
+UpdateNoneText|Du verwendest die neueste Version von Spotlight ({0})
+UpdateNoneHeader|Keine Updates verfügbar.
+UpdateFailText|Die Aktualisierungsinformationen konnten nicht abgerufen werden.<N>{0}
+UpdateFailHeader|Verbindungsfehler
+
+UnsavedChangesText|Du hast ungespeicherte Änderungen in:<N> {0} Willst du diese speichern?
+UnsavedChangesHeader|Ungespeicherte Änderungen!
+StatusLevelClosed|{0} wurde geschlossen.
+
+#Main Menu Controls
+FileToolStripMenuItem|Datei
+OpenToolStripMenuItem|Öffnen
+OpenExToolStripMenuItem|Mit Selector öffnen
+SaveToolStripMenuItem|Speichern
+SaveAsToolStripMenuItem|Speichern als
+OptionsToolStripMenuItem|Optionen
+
+EditToolStripMenuItem|Bearbeiten
+UndoToolStripMenuItem|Rückgängig
+RedoToolStripMenuItem|Wiederholen
+AddObjectToolStripMenuItem|Objekt hinzufügen
+AddZoneToolStripMenuItem|Zone hinzufügen
+DuplicateToolStripMenuItem|Duplizieren
+DeleteToolStripMenuItem|Löschen
+SelectAllToolStripMenuItem|Alles auswählen
+DeselectAllToolStripMenuItem|Alle abwählen
+LevelParametersToolStripMenuItem|Level Parameter
+MoveSelectionToToolStripMenuItem|Auswahl verschieben nach
+MoveToLinkedToolStripMenuItem|Verknüpfte Objekte
+MoveToAppropriateListsToolStripMenuItem|Geeignete Listen
+
+ModeToolStripMenuItem|Modus
+EditObjectsToolStripMenuItem|Objekte bearbeiten
+EditLinksToolStripMenuItem|Verknüpfungen bearbeiten
+
+AboutToolStripMenuItem|Über
+SpotlightWikiToolStripMenuItem|Spotlight Wiki
+CheckForUpdatesToolStripMenuItem|Nach Updates suchen
+
+ZonesTabPage|Zonen
+ObjectsTabPage|Objekte
+EditIndividualButton|Einzelne Bearbeiten
+CurrentObjectLabel|Nichts Ausgewählt
+
+#Settings Menu
+SettingsTitle|Spotlight - Einstellungen
+DatabaseVersionBase|Letzte Datenbank erstellt am: [DATABASEGENDATE].    Version: [VER]
+DescriptionVersionBase|Beschreibungen zuletzt bearbeitet am: [DATABASEGENDATE].    Version: [VER]
+FileDoesntExist|N/A (Datei existiert nicht)
+FileDeleted|N/A (Datei wurde gelöscht)
+SettingsInvalid|Ungültig
+DatabaseOutdated|Veraltet
+DatabasePickerTitle|Wähle das Spielverzeichnis von Super Mario 3D World aus.
+InvalidFolder|Das Verzeichniss enthält den "StageData" und "ObjectData" Ordner nicht.
+InvalidGamePath|Das Verzeichniss ist ungültig
+InvalidProjectPath|Das Verzeichniss ist ungültig
+DatabaseRebuildSuccessText|Die Datenbank wurde neu erstellt!
+DatabaseRebuildSuccessHeader|Erfolgreich.
+DescriptionClearText|Bist du dir sicher, dass du deine Beschreibungsdatenbank leeren möchtest??<N>(Dies kann nicht rückgängig gemacht werden)
+DescriptionClearHeader|Bestätigung.
+DescriptionClearSuccessText|Die Beschreibung wurde gelöscht.
+DescriptionClearSuccessHeader|Erfolgreich.
+ResetWarningText|Dadurch werden alle deiner Anpassungen zurückgesetzt, deine Objektdatenbank und Beschreibungsdatenbank gelöscht und Spotlight ohne Speichern beendet.<N>Willst du fortfahren?";
+ResetWarningHeader|Warnung
+
+GamePathLabel|Game Directory:
+ProjectPathLabel|Projekt Pfad:
+ObjectParameterGroupBox|Datenbanken
+RebuildDatabaseButton|Wiederaufbauen
+ClearDescriptionsButton|Löschen
+RenderingGroupBox|Rendern
+RenderAreaCheckBox|Bereiche rendern
+RenderSkyboxesCheckBox|Skyboxen darstellen
+PlayerLabel|Player:
+PlayerNone|Keiner
+PlayerMario|Mario
+PlayerLuigi|Luigi
+PlayerPeach|Peach
+PlayerToad|Toad
+PlayerRosalina|Rosalina
+LoadingAndSavingGroupBox|Laden und Speichern
+UniqueIDsCheckBox|Lade nur eindeutige ObjectIDs (deaktiviere diese Option, wenn Objekte beim Laden eines Custom Levels verschwinden).
+EditingGroupBox|Bearbeitung
+IDEditingCheckBox|ID Bearbeitung aktivieren
+MiscellaneousGroupBox|Sonstiges
+LanguageLabel|Language:
+ResetSpotlightButton|Zurücksetzten
+
+#Add Objects Menu
+AddObjectsTitle|Spotlight - Objekt hinzufügen
+ObjectFromDBTab|Objekte
+RailTab|Rails
+SearchLabel|Suchen
+ClassNameColumnHeader|Klassenname
+EnglishNameColumnHeader|Name
+ObjectCountColumnHeader|Objekte
+ModelCountColumnHeader|Modelle
+
+RailTypeLabel|Rail Typ
+ClosePathCheckBox|Path schließen?
+ReverseRailCheckBox|Umkehren?
+LadderRailCheckBox|Ist es eine Ladder?
+RailNameColumnHeader|Rail Name
+AddObjectDescriptionText|Beschreibung
+AddObjectNameText|Name
+GlobalPropertyNameText|Property Name
+GlobalTypeText|Typ
+GlobalSelectText|Auswahl
+
+AddObjectNothingSelectedText|Nichts Ausgewählt
+AddObjectNoPropertiesText|Keine Eigenschaften
+AddObjectSinglePropertyText|{0} Eigentum
+AddObjectMultiPropertyText|{0} Eigenschaften
+NoDescriptionFoundText|Keine Beschreibung gefunden
+SearchResultsSuccessText|Suchergebnisse: {0}
+SearchResultsFailureText|Keine Ergebnisse für {0}
+SaveDescriptionText|Du hast eine oder mehrere Objektbeschreibungen bearbeitet<N>Würdest du gerne Speichern?
+SaveDescriptionHeader|Änderungen speichern?
+
+#Add Zones Menu
+AddZonesTitle|Spotlight - Zone hinzufügen
+FilterZonesCheckbox|Filter Zonen
+OKButton|OK
+CancelSelectionButton|Abbrechen
+
+#Loadin G. Bar
+LoadingLevelText|Lädt Level...
+DatabaseGeneratingText|Datenbank wird generiert...
+OperationCompleteText|Vorgang abgeschlossen!
+
+#Object Parameter Menu
+ObjectParametersTitle|Spotlight - Objektparameter-Editor
+TypeDefInteger|Ganze Nummer
+TypeDefSingle|Dezimal Nummer
+TypeDefString|Text
+TypeDefBoolean|Checkbox
+RemoveParameterText|Entfernen
+UseProgrammingTermsCheckbox|Verwende Programmierbegriffe
+ObjectParameterAddText|Hinzufügen
+
+
+#You can give Levels names too. Example Below
+#<Stage Filename>|<In-game name>
+EnterCatMarioStage|Super Bell Hill

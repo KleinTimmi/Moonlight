@@ -26,7 +26,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
@@ -143,6 +143,7 @@
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -284,9 +285,11 @@
     <Compile Include="Level\GlobalZoneHistory.cs" />
     <EmbeddedResource Include="GUI\AddObjectForm.resx">
       <DependentUpon>AddObjectForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\AddZoneForm.resx">
       <DependentUpon>AddZoneForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\LevelEditorForm.resx">
       <DependentUpon>LevelEditorForm.cs</DependentUpon>
@@ -307,6 +310,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\SceneListView3dWorld.resx">
       <DependentUpon>SceneListView3dWorld.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\SplashForm.resx">
       <DependentUpon>SplashForm.cs</DependentUpon>
@@ -326,6 +330,7 @@
     </Compile>
     <EmbeddedResource Include="GUI\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
@@ -358,6 +363,9 @@
     <Resource Include="Resources\DefaultTexture.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Languages\Deutsch.txt" />
+    <Content Include="Languages\English.txt" />
+    <Content Include="Languages\Japanese.txt" />
     <Content Include="LatestVersion.txt" />
     <None Include="Resources\BootTvTex.png" />
     <None Include="Resources\SpotlightCanvas.png" />
@@ -373,6 +381,7 @@
     <None Include="Resources\Gizmos.png" />
     <None Include="Resources\InfoIndicator.png" />
     <None Include="Resources\InfoIndicatorHighlight.png" />
+    <None Include="Resources\%24this.Icon.ico" />
     <Content Include="SpotlightIcon.ico" />
   </ItemGroup>
   <ItemGroup>

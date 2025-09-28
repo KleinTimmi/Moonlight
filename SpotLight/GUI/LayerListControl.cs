@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,10 +13,10 @@ namespace Spotlight.GUI
 {
     class LayerListControl : FlexibleUIControl
     {
-        private SM3DWorldZone zone;
+        public SM3DWorldZone zone;
 
 
-        private int scenario = 0;
+        public int scenario = 0;
         private Brush shadowBrush = new SolidBrush(Color.FromArgb(20,0,0,0));
 
         public event EventHandler ScenarioConfigChanged;
@@ -30,6 +31,7 @@ namespace Spotlight.GUI
         public void SetScenario(int scenario)
         {
             this.scenario = scenario;
+            Refresh();
         }
 
         protected override void OnPaint(PaintEventArgs e)

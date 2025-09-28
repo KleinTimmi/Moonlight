@@ -1,28 +1,31 @@
-﻿using GL_EditorFramework;
+﻿using BYAML;
+using GL_EditorFramework;
 using GL_EditorFramework.EditorDrawables;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using OpenTK;
+using SARCExt;
+using Spotlight.Database;
 using Spotlight.EditorDrawables;
+using Spotlight.GUI;
+using Spotlight.Level;
+using Spotlight.ObjectRenderers;
+using Syroot.BinaryData;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using static GL_EditorFramework.Framework;
-using Spotlight.Database;
-using Spotlight.Level;
-using System.Threading;
-using static GL_EditorFramework.EditorDrawables.EditorSceneBase;
-using System.Reflection;
-using Spotlight.ObjectRenderers;
-using Spotlight.GUI;
 using System.Drawing;
-using SARCExt;
-using BYAML;
-using Syroot.BinaryData;
+using System.IO;
+using System.IO.Compression;
+using System.Linq;
+using System.Net.Http;
+using System.Reflection;
+using System.Text;
+using System.Text.Json;
+using System.Threading;
+using System.Windows.Forms;
+using static GL_EditorFramework.EditorDrawables.EditorSceneBase;
+using static GL_EditorFramework.Framework;
 
 
 namespace Spotlight.GUI
@@ -32,6 +35,8 @@ namespace Spotlight.GUI
         LevelParameterForm LPF;
         SM3DWorldScene currentScene;
         public SettingsForm SettingsFormInstance;
+        LayerListControl layerListControl = new LayerListControl();
+
 
 
 
@@ -39,6 +44,29 @@ namespace Spotlight.GUI
         Keys KS_AddObject = KeyStroke("Shift+A");
         Keys KS_DeleteSelected = KeyStroke("Delete");
         Keys KS_RenderAreas = KeyStroke("NumPad1");
+        Keys KS_RenderSkyboxes = KeyStroke("NumPad2");
+        Keys KS_TransparentWalls = KeyStroke("NumPad3");
+        Keys KS_Scenario1 = KeyStroke("1"); 
+        Keys KS_Scenario2 = KeyStroke("2");
+        Keys KS_Scenario3 = KeyStroke("3");
+        Keys KS_Scenario4 = KeyStroke("4");
+        Keys KS_Scenario5 = KeyStroke("5");
+        Keys KS_Scenario6 = KeyStroke("6");
+        Keys KS_Scenario7 = KeyStroke("7");
+        Keys KS_Scenario8 = KeyStroke("8");
+        Keys KS_Scenario9 = KeyStroke("9");
+        Dictionary<Keys, int> scenarioHotkeys = new Dictionary<Keys, int>
+    {
+        { Keys.D1, 0 },
+        { Keys.D2, 1 },
+        { Keys.D3, 2 },
+        { Keys.D4, 3 },
+        { Keys.D5, 4 },
+        { Keys.D6, 5 },
+        { Keys.D7, 6 },
+        { Keys.D8, 7 },
+        { Keys.D9, 8 }
+    };
         #endregion
 
 #if ODYSSEY
@@ -53,16 +81,35 @@ namespace Spotlight.GUI
         //Button scenarioApplyButton = new Button();
 #endif
 
+
         protected override bool ProcessKeyPreview(ref Message m)
         {
             Keys keyData = (Keys)(unchecked((int)(long)m.WParam)) | ModifierKeys;
+
             if (keyData == KS_RenderAreas)
             {
-                Properties.Settings.Default.DrawAreas = false;
-
+                if (m.Msg == 0x0100) //WM_KEYDOWN
+                {
+                    Properties.Settings.Default.DrawAreas = !Properties.Settings.Default.DrawAreas;
+                    Properties.Settings.Default.Save();
+                }
             }
-
-
+            else if (keyData == KS_RenderSkyboxes)
+            {
+                if (m.Msg == 0x0100) //WM_KEYDOWN
+                {
+                    Properties.Settings.Default.DrawSkyBoxes = !Properties.Settings.Default.DrawSkyBoxes;
+                    Properties.Settings.Default.Save();
+                }
+            }
+            else if (keyData == KS_TransparentWalls)
+            {
+                if (m.Msg == 0x0100) //WM_KEYDOWN
+                {
+                    Properties.Settings.Default.DrawTransparentWalls = !Properties.Settings.Default.DrawTransparentWalls;
+                    Properties.Settings.Default.Save();
+                }
+            }
 
             if (LevelGLControlModern.IsHovered)
             {
@@ -85,21 +132,57 @@ namespace Spotlight.GUI
 
             return base.ProcessKeyPreview(ref m);
         }
-
-        private bool IsExclusiveKey(Keys keyData) => keyData == CopyToolStripMenuItem.ShortcutKeys ||
-                keyData == PasteToolStripMenuItem.ShortcutKeys;
+        private bool IsExclusiveKey(Keys keyData) =>
+            keyData == CopyToolStripMenuItem.ShortcutKeys ||
+            keyData == PasteToolStripMenuItem.ShortcutKeys;
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            // Alt-Taste blocken wenn die GL-View gehighlighted ist
             if (LevelGLControlModern.IsHovered &&
-                (keyData & Keys.KeyCode) == Keys.Menu) //Alt key
-                return true; //would trigger the menu otherwise
+                (keyData & Keys.KeyCode) == Keys.Menu) // Alt key
+                return true;
 
-            else if (!LevelGLControlModern.IsHovered && IsExclusiveKey(keyData))
-                return false; //would trigger the copy/paste action and prevent copy/paste for textboxes
-            else
-                return base.ProcessCmdKey(ref msg, keyData);
+            if (!LevelGLControlModern.IsHovered && IsExclusiveKey(keyData))
+                return false;
+
+            const int WM_KEYDOWN = 0x0100;
+
+            // Debug-Ausgaben, damit sichtbar wird, ob die Methode ausgeführt wird
+            System.Diagnostics.Debug.WriteLine($"ProcessCmdKey called: msg=0x{msg.Msg:X}, keyData={keyData}");
+
+            if (msg.Msg == WM_KEYDOWN)
+            {
+                // nur KeyCode-Teil betrachten (ohne Modifiers)
+                Keys keyOnly = keyData & Keys.KeyCode;
+                System.Diagnostics.Debug.WriteLine($" -> keyOnly={keyOnly}");
+
+                if (scenarioHotkeys.TryGetValue(keyOnly, out int scenarioIndex))
+                {
+                    System.Diagnostics.Debug.WriteLine($" -> scenarioHotkeys hit: index={scenarioIndex}");
+
+                    currentScene.SetScenario(scenarioIndex);
+                    currentScene.EditZone.SetScenario(scenarioIndex);
+                    layerListControl.SetScenario(scenarioIndex);
+
+                    UpdateLayerList();
+#if ODYSSEY
+                    ScenarioComboBox.SelectedIndex = scenarioIndex;
+#endif
+                    LevelGLControlModern.Refresh();
+                    MainSceneListView.Refresh();
+                    return true;
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine(" -> scenarioHotkeys miss");
+                }
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
+
+
 
         protected override void OnActivated(EventArgs e)
         {
@@ -138,6 +221,13 @@ namespace Spotlight.GUI
         public LevelEditorForm()
         {
             InitializeComponent();
+            this.KeyPreview = true;
+
+
+            layerListControl = new LayerListControl();
+            layerListControl.Dock = DockStyle.Fill; // oder manuell positionieren
+            Controls.Add(layerListControl);
+
 
             string KeyStrokeName(Keys keyData) =>
                     System.ComponentModel.TypeDescriptor.GetConverter(typeof(Keys)).ConvertToString(keyData);
@@ -1114,15 +1204,86 @@ namespace Spotlight.GUI
 
         private void SpotlightWikiToolStripMenuItem_Click(object sender, EventArgs e) => Process.Start("https://github.com/jupahe64/Spotlight/wiki");
 
+
+        async void DownloadLatestReleaseZip()
+        {
+            string apiUrl = "https://api.github.com/repos/KleinTimmi/Moonlight/releases/latest";
+            string tempZipPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "MoonlightUpdate.zip");
+            string extractPath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "MoonlightUpdate");
+
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.UserAgent.ParseAdd("MoonlightUpdater");
+
+                    string json = await client.GetStringAsync(apiUrl);
+                    using var doc = JsonDocument.Parse(json);
+
+                    var assets = doc.RootElement.GetProperty("assets");
+                    string zipUrl = null;
+
+                    foreach (var asset in assets.EnumerateArray())
+                    {
+                        string name = asset.GetProperty("name").GetString();
+                        if (name.EndsWith(".zip"))
+                        {
+                            zipUrl = asset.GetProperty("browser_download_url").GetString();
+                            break;
+                        }
+                    }
+
+                    if (zipUrl == null)
+                    {
+                        MessageBox.Show("No .zip file found in the latest release.", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    byte[] zipBytes = await client.GetByteArrayAsync(zipUrl);
+                    File.WriteAllBytes(tempZipPath, zipBytes);
+
+                    if (Directory.Exists(extractPath))
+                        Directory.Delete(extractPath, true);
+
+                    ZipFile.ExtractToDirectory(tempZipPath, extractPath);
+                    Process.Start("explorer.exe", extractPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Update download failed: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void CheckForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (CheckForUpdates(out Version Latest, true))
+            if (CheckForUpdates(out Version latestVersion, true))
             {
-                if (MessageBox.Show(string.Format(UpdateReadyText, Latest.ToString()), UpdateReadyHeader, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                    Process.Start("https://github.com/jupahe64/Spotlight/releases");
+                var result = MessageBox.Show(
+                    string.Format(UpdateReadyText, latestVersion),
+                    UpdateReadyHeader,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information);
+
+                if (result == DialogResult.Yes)
+                {
+                    Process.Start("https://github.com/KleinTimmi/Moonlight/releases");
+
+                }
+                if (MessageBox.Show("Would you like to download the update directly?", "Update available", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    DownloadLatestReleaseZip();
+                }
+
             }
-            else if (!Latest.Equals(new Version(0, 0, 0, 0)))
-                MessageBox.Show(string.Format(UpdateNoneText, new Version(Application.ProductVersion).ToString()), UpdateNoneHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else if (!latestVersion.Equals(new Version(0, 0, 0, 0)))
+            {
+                MessageBox.Show(
+                    string.Format(UpdateNoneText, Application.ProductVersion),
+                    UpdateNoneHeader,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
         }
 
         #endregion
@@ -1569,38 +1730,42 @@ namespace Spotlight.GUI
         /// Checks for Updates
         /// </summary>
         /// <returns></returns>
-        public bool CheckForUpdates(out Version Latest, bool ShowError = false)
+        public bool CheckForUpdates(out Version latestVersion, bool showError = false)
         {
-            System.Net.WebClient Client = new System.Net.WebClient();
-            Latest = null;
+            latestVersion = new Version(0, 0, 0, 0);
+            string versionUrl = "https://raw.githubusercontent.com/KleinTimmi/Moonlight/master/SpotLight/LatestVersion.txt";
+
             try
             {
-                Client.DownloadFile("https://raw.githubusercontent.com/jupahe64/Spotlight/master/SpotLight/LatestVersion.txt", @AppDomain.CurrentDomain.BaseDirectory + "VersionCheck.txt");
+                using (var client = new System.Net.Http.HttpClient())
+                {
+                    var versionText = client.GetStringAsync(versionUrl).Result.Trim();
+
+                    if (!Version.TryParse(versionText, out Version remoteVersion))
+                    {
+                        if (showError)
+                        {
+                            MessageBox.Show("Ungültiges Versionsformat empfangen.", UpdateFailHeader,
+                                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        return false;
+                    }
+
+                    Version localVersion = new Version(Application.ProductVersion);
+                    latestVersion = remoteVersion;
+
+                    return localVersion.CompareTo(remoteVersion) < 0;
+                }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                if (ShowError)
-                    MessageBox.Show(string.Format(UpdateFailText, e.Message), UpdateFailHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning); //Imagine not having internet
-                Latest = new Version(0, 0, 0, 0);
+                if (showError)
+                {
+                    MessageBox.Show($"Updateprüfung fehlgeschlagen: {ex.Message}", UpdateFailHeader,
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
                 return false;
             }
-            if (File.Exists(@AppDomain.CurrentDomain.BaseDirectory + "VersionCheck.txt"))
-            {
-                Version Internet = new Version(File.ReadAllText(@AppDomain.CurrentDomain.BaseDirectory + "VersionCheck.txt"));
-                File.Delete(@AppDomain.CurrentDomain.BaseDirectory + "VersionCheck.txt");
-                Version Local = new Version(Application.ProductVersion);
-                if (Local.CompareTo(Internet) < 0)
-                {
-                    Latest = Internet;
-                    return true;
-                }
-                else
-                {
-                    Latest = Local;
-                    return false;
-                }
-            }
-            else return false;
         }
 
         #region Translations
@@ -1939,7 +2104,7 @@ Would you like to rebuild the database from your SMO Files?";
 
             currentScene.EndUndoCollection();
 
-            currentScene.UpdateLinkDestinations();
+            //currentScene.LinkDestinations();
 
             Scene_SelectionChanged(null, null);
 

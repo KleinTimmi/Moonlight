@@ -83,7 +83,7 @@
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -117,7 +117,7 @@
             this.ObjDBListView.FullRowSelect = true;
             this.ObjDBListView.HideSelection = false;
             this.ObjDBListView.Location = new System.Drawing.Point(0, 51);
-            this.ObjDBListView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ObjDBListView.Margin = new System.Windows.Forms.Padding(6);
             this.ObjDBListView.MultiSelect = false;
             this.ObjDBListView.Name = "ObjDBListView";
             this.ObjDBListView.ShowGroups = false;
@@ -157,7 +157,7 @@
             this.panel1.Controls.Add(this.SearchLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 7);
-            this.panel1.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.panel1.Margin = new System.Windows.Forms.Padding(7);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 7);
             this.panel1.Size = new System.Drawing.Size(284, 44);
@@ -167,7 +167,7 @@
             // 
             this.SearchTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SearchTextBox.Location = new System.Drawing.Point(77, 0);
-            this.SearchTextBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SearchTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.SearchTextBox.Name = "SearchTextBox";
             this.SearchTextBox.Size = new System.Drawing.Size(207, 32);
             this.SearchTextBox.TabIndex = 1;
@@ -189,7 +189,7 @@
             this.splitContainer2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -199,7 +199,7 @@
             this.splitContainer2.Panel1.Controls.Add(this.ObjectDescriptionTextBox);
             this.splitContainer2.Panel1.Controls.Add(this.ClassNameLabel);
             this.splitContainer2.Panel1.Controls.Add(this.EnglishNameTextBox);
-            this.splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(4);
             this.splitContainer2.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.SplitContainer2_Panel2_Paint);
             // 
             // splitContainer2.Panel2
@@ -218,7 +218,7 @@
             this.ObjectDescriptionTextBox.BackColor = System.Drawing.SystemColors.Info;
             this.ObjectDescriptionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ObjectDescriptionTextBox.Location = new System.Drawing.Point(4, 59);
-            this.ObjectDescriptionTextBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ObjectDescriptionTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.ObjectDescriptionTextBox.Multiline = true;
             this.ObjectDescriptionTextBox.Name = "ObjectDescriptionTextBox";
             this.ObjectDescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -247,7 +247,7 @@
             this.EnglishNameTextBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.EnglishNameTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EnglishNameTextBox.Location = new System.Drawing.Point(4, 4);
-            this.EnglishNameTextBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.EnglishNameTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.EnglishNameTextBox.Name = "EnglishNameTextBox";
             this.EnglishNameTextBox.Size = new System.Drawing.Size(1285, 40);
             this.EnglishNameTextBox.TabIndex = 7;
@@ -261,7 +261,7 @@
             this.PropertyDescriptionTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PropertyDescriptionTextBox.Enabled = false;
             this.PropertyDescriptionTextBox.Location = new System.Drawing.Point(433, 22);
-            this.PropertyDescriptionTextBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PropertyDescriptionTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.PropertyDescriptionTextBox.Multiline = true;
             this.PropertyDescriptionTextBox.Name = "PropertyDescriptionTextBox";
             this.PropertyDescriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -277,7 +277,7 @@
             this.PropertyListBox.IntegralHeight = false;
             this.PropertyListBox.ItemHeight = 20;
             this.PropertyListBox.Location = new System.Drawing.Point(4, 22);
-            this.PropertyListBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PropertyListBox.Margin = new System.Windows.Forms.Padding(6);
             this.PropertyListBox.Name = "PropertyListBox";
             this.PropertyListBox.Size = new System.Drawing.Size(429, 471);
             this.PropertyListBox.TabIndex = 15;
@@ -303,7 +303,7 @@
             this.ToQuickFavoritesButton.Enabled = false;
             this.ToQuickFavoritesButton.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToQuickFavoritesButton.Location = new System.Drawing.Point(1373, 967);
-            this.ToQuickFavoritesButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ToQuickFavoritesButton.Margin = new System.Windows.Forms.Padding(6);
             this.ToQuickFavoritesButton.Name = "ToQuickFavoritesButton";
             this.ToQuickFavoritesButton.Size = new System.Drawing.Size(242, 55);
             this.ToQuickFavoritesButton.TabIndex = 6;
@@ -318,7 +318,7 @@
             this.SelectObjectButton.Enabled = false;
             this.SelectObjectButton.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectObjectButton.Location = new System.Drawing.Point(11, 967);
-            this.SelectObjectButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SelectObjectButton.Margin = new System.Windows.Forms.Padding(6);
             this.SelectObjectButton.Name = "SelectObjectButton";
             this.SelectObjectButton.Size = new System.Drawing.Size(1351, 55);
             this.SelectObjectButton.TabIndex = 5;
@@ -354,7 +354,7 @@
             this.SharedContentPanel.Controls.Add(this.splitContainer1);
             this.SharedContentPanel.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SharedContentPanel.Location = new System.Drawing.Point(18, 54);
-            this.SharedContentPanel.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.SharedContentPanel.Margin = new System.Windows.Forms.Padding(6);
             this.SharedContentPanel.Name = "SharedContentPanel";
             this.SharedContentPanel.Size = new System.Drawing.Size(1591, 788);
             this.SharedContentPanel.TabIndex = 10;
@@ -366,7 +366,7 @@
             this.ObjectTypeTabControl.Controls.Add(this.AreasTab);
             this.ObjectTypeTabControl.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ObjectTypeTabControl.Location = new System.Drawing.Point(0, 0);
-            this.ObjectTypeTabControl.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ObjectTypeTabControl.Margin = new System.Windows.Forms.Padding(6);
             this.ObjectTypeTabControl.Name = "ObjectTypeTabControl";
             this.ObjectTypeTabControl.SelectedIndex = 0;
             this.ObjectTypeTabControl.Size = new System.Drawing.Size(1626, 956);
@@ -377,9 +377,9 @@
             // 
             this.ObjectsTab.Controls.Add(this.tableLayoutPanel1);
             this.ObjectsTab.Location = new System.Drawing.Point(4, 34);
-            this.ObjectsTab.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ObjectsTab.Margin = new System.Windows.Forms.Padding(6);
             this.ObjectsTab.Name = "ObjectsTab";
-            this.ObjectsTab.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ObjectsTab.Padding = new System.Windows.Forms.Padding(6);
             this.ObjectsTab.Size = new System.Drawing.Size(1618, 918);
             this.ObjectsTab.TabIndex = 0;
             this.ObjectsTab.Text = "Objects";
@@ -397,7 +397,7 @@
             this.tableLayoutPanel1.Controls.Add(this.ObjectNameLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.ModelNameTextBox, 1, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 816);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.13044F));
@@ -411,7 +411,7 @@
             this.ObjectNameTextBox.Enabled = false;
             this.ObjectNameTextBox.FilterSuggestions = true;
             this.ObjectNameTextBox.Location = new System.Drawing.Point(6, 39);
-            this.ObjectNameTextBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ObjectNameTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.ObjectNameTextBox.Name = "ObjectNameTextBox";
             this.ObjectNameTextBox.PossibleSuggestions = new string[0];
             this.ObjectNameTextBox.Size = new System.Drawing.Size(787, 32);
@@ -425,7 +425,7 @@
             this.ModelNameTextBox.Enabled = false;
             this.ModelNameTextBox.FilterSuggestions = true;
             this.ModelNameTextBox.Location = new System.Drawing.Point(805, 39);
-            this.ModelNameTextBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ModelNameTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.ModelNameTextBox.Name = "ModelNameTextBox";
             this.ModelNameTextBox.PossibleSuggestions = new string[0];
             this.ModelNameTextBox.Size = new System.Drawing.Size(788, 32);
@@ -438,9 +438,9 @@
             this.RailsTab.Controls.Add(this.PathShapeSelector);
             this.RailsTab.Controls.Add(this.RailsCountTextBox);
             this.RailsTab.Location = new System.Drawing.Point(4, 34);
-            this.RailsTab.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.RailsTab.Margin = new System.Windows.Forms.Padding(6);
             this.RailsTab.Name = "RailsTab";
-            this.RailsTab.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.RailsTab.Padding = new System.Windows.Forms.Padding(6);
             this.RailsTab.Size = new System.Drawing.Size(1618, 918);
             this.RailsTab.TabIndex = 1;
             this.RailsTab.Text = "Rails";
@@ -449,7 +449,7 @@
             // PathShapeSelector
             // 
             this.PathShapeSelector.Location = new System.Drawing.Point(13, 812);
-            this.PathShapeSelector.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.PathShapeSelector.Margin = new System.Windows.Forms.Padding(6);
             this.PathShapeSelector.Name = "PathShapeSelector";
             this.PathShapeSelector.Size = new System.Drawing.Size(796, 92);
             this.PathShapeSelector.TabIndex = 11;
@@ -458,7 +458,7 @@
             // 
             this.RailsCountTextBox.BackColor = System.Drawing.SystemColors.Info;
             this.RailsCountTextBox.Location = new System.Drawing.Point(808, 812);
-            this.RailsCountTextBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.RailsCountTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.RailsCountTextBox.Name = "RailsCountTextBox";
             this.RailsCountTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.RailsCountTextBox.Size = new System.Drawing.Size(792, 32);
@@ -470,9 +470,9 @@
             this.AreasTab.Controls.Add(this.AreaShapeComboBox);
             this.AreasTab.Controls.Add(this.AreaShapeLabel);
             this.AreasTab.Location = new System.Drawing.Point(4, 34);
-            this.AreasTab.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.AreasTab.Margin = new System.Windows.Forms.Padding(6);
             this.AreasTab.Name = "AreasTab";
-            this.AreasTab.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.AreasTab.Padding = new System.Windows.Forms.Padding(6);
             this.AreasTab.Size = new System.Drawing.Size(1618, 918);
             this.AreasTab.TabIndex = 2;
             this.AreasTab.Text = "Areas";
@@ -484,7 +484,7 @@
             this.AreaShapeComboBox.Enabled = false;
             this.AreaShapeComboBox.FormattingEnabled = true;
             this.AreaShapeComboBox.Location = new System.Drawing.Point(11, 844);
-            this.AreaShapeComboBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.AreaShapeComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.AreaShapeComboBox.Name = "AreaShapeComboBox";
             this.AreaShapeComboBox.Size = new System.Drawing.Size(1592, 33);
             this.AreaShapeComboBox.TabIndex = 12;
@@ -509,7 +509,7 @@
             this.Controls.Add(this.SharedContentPanel);
             this.Controls.Add(this.ObjectTypeTabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "AddObjectForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Spotlight - Add Object";

@@ -1,0 +1,408 @@
+#Base Language File for Spotlight - Super Mario 3D World Editor
+#These files contain text used by the program, translated for other languages
+#Lines are formatted as follows:
+# <MessageID>|<Text>
+#Where <MessageID> is the internal ID of the message and <Text> is the actual text
+#Lines that start with # are comments.
+# <N> represents a new line
+# </> represents the | character
+# {x} where x is a number indicates that the program is going to fill this space in. Example: The Loaded Database is outdated ({0}). Spotlight replaces the {0} with the outdated database version
+# Blank lines are skipped by the program
+# |は半角じゃないとSpotlightが読み込めません
+# Japanese translation was made by フォーン(fon)
+
+#メインメニュー
+EditorTitle|Spotlight
+WelcomeMessageHeader|導入
+WelcomeMessageText|Spotlightへようこそ！<N>このプログラムを使用するには、スーパーマリオ3Dワールドの「StageData」と「ObjectData」のフォルダが必要です<N><N>これらのフォルダが含まれるフォルダを選択してください。
+StatusWelcomeMessage|Spotlightへようこそ！
+StatusWelcomeBackMessage|おかえりなさい！
+DatabasePickerTitle|スーパーマリオ3Dワールドのゲームディレクトリを選択してください。
+InvalidGamepathText|ディレクトリにObjectDataとStageDataが含まれていません。
+InvalidGamepathHeader|ゲームパスが無効です。
+DatabaseMissingText|オブジェクトパラメータデータベースを見つけることができませんでした。 (ParameterDatabase.sopd)<N><N>Spotlightでは、オブジェクトを追加するためにはオブジェクトパラメータデータベースが必要です。3DWのディレクトリから新しいオブジェクトデータベースを生成しますか？
+DatabaseExcludeText|本当によろしいですか？ これがなければオブジェクトは追加できません。
+DatabaseExcludeHeader|確認
+DatabaseOutdatedHeader|ロードしたデータベースは旧式です。 ({0}). <N>最新のデータベースのバージョンは{1}です。<N>3DWのファイルからデータベースを再生成しますか？
+DatabaseOutdatedHeader|旧式のデータベースです。
+
+StatusOpenSuccessMessage|{0}が正常にロードされました。
+StatusWaitMessage|待機中...
+StatusOpenCancelledMessage|開けませんでした。
+StatusOpenFailedMessage|開けませんでした。
+StatusLevelSavedMessage|変更が保存されました。
+StatusSettingsSavedMessage|設定が保存されました。
+StatusSaveCancelledOrFailedMessage|保存がキャンセルされたか失敗しました。
+StatusObjectPlaceNoticeMessage|クリックでオブジェクトを配置する必要があります。shiftを押し続けると複数のオブジェクトが設置されます。
+FileLevelOpenFilter|Level Files (Map) </>Level Files (Design) </>Level Files (Sound) </>All Level Files
+
+LevelParamsMissingText|StageList.szsが{0}SystemDataにありません。
+LevelParamsMissingHeader|欠落しているファイル
+
+DuplicateNothingMessage|何も複製できません！
+DuplicateSuccessMessage|複製されました{0}
+
+LevelSelectMissing|StageList.szsが見つからなかったので {0}、この機能は使えません。
+LevelSelectCopyText|{0}はプロジェクトディレクトリ内にありません。プロジェクトディレクトリ内にコピーを作成しますか？
+LevelSelectCopyHeader|確認
+
+StatusObjectsDeletedMessage|削除されました{0}。
+DatabaseInvalidText|そのデータベースは無効です。そしてこれがなければオブジェクトは追加できません。 SM3DWのファイルからデータベースを生成しますか？
+DatabaseInvalidHeader|無効なデータベース
+DatabaseCreatedText|データベースが作成されました
+DatabaseCreatedHeader|操作が完了しました
+
+StatusMovedToLinksMessage|リンクリストに移動しました
+StatusMovedFromLinksMessage|適切なリストに移動しました
+UpdateReadyText|Spotlightのバージョン{0}は現在ダウンロード可能です! ダウンロードページを訪れますか？
+UpdateReadyHeader|更新準備完了！
+UpdateNoneText|Spotlightの最新バージョンを使用しています ({0})
+UpdateNoneHeader|更新なし
+UpdateFailText|更新情報の取得に失敗しました。
+UpdateFailHeader|接続失敗
+
+UnsavedChangesText|保存されていない変更があります:<N> {0} 保存しますか？
+UnsavedChangesHeader|未保存の変更があります！
+StatusLevelClosed|{0}が閉じられました。
+
+#メインメニュー操作
+FileToolStripMenuItem|ファイル
+OpenToolStripMenuItem|開く
+OpenExToolStripMenuItem|セレクターで開く
+SaveToolStripMenuItem|保存
+SaveAsToolStripMenuItem|名前を付けて保存
+OptionsToolStripMenuItem|設定
+
+EditToolStripMenuItem|編集
+UndoToolStripMenuItem|アンドゥ
+RedoToolStripMenuItem|リドゥ
+AddObjectToolStripMenuItem|オブジェクトを追加
+AddZoneToolStripMenuItem|ゾーンを追加
+DuplicateToolStripMenuItem|複製
+DeleteToolStripMenuItem|削除
+LevelParametersToolStripMenuItem|レベルパラメータ
+MoveSelectionToToolStripMenuItem|選択物を移動
+MoveToLinkedToolStripMenuItem|リンクされたオブジェクト
+MoveToAppropriateListsToolStripMenuItem|適切なリスト
+
+SelectionToolStripMenuItem|選択
+SelectAllToolStripMenuItem|全て選択
+DeselectAllToolStripMenuItem|全ての選択を解除
+GrowSelectionToolStripMenuItem|選択を増加
+SelectAllLinkedToolStripMenuItem|リンクされているものを全て選択
+
+ModeToolStripMenuItem|モード
+EditObjectsToolStripMenuItem|オブジェクトの編集
+EditLinksToolStripMenuItem|リンクの編集
+
+AboutToolStripMenuItem|Spotlightに関して
+SpotlightWikiToolStripMenuItem|SpotlightのWiki
+CheckForUpdatesToolStripMenuItem|更新のチェック
+
+ZonesTabPage|ゾーン
+ObjectsTabPage|オブジェクト
+EditIndividualButton|個々で編集
+
+MultipleSelected|オブジェクトが複数選択されています
+NothingSelected|何も選択されていません
+Selected|選択された
+
+MovedToOtherListInfo|{0}を{1}に移動しました
+NothingMovedToLinkedInfo|全てのオブジェクトがオブジェクトリストに残ります (Shiftキーを押したまま)
+
+#設定メニュー
+SettingsTitle|Spotlight - 設定
+DatabaseVersionBase|データベースの最終ビルド日は、[DATABASEGENDATE] です。    バージョン: [VER]
+DescriptionVersionBase|ディスクリプションの最終編集日は、[DATABASEGENDATE]。    バージョン: [VER]
+FileDoesntExist|N/A (ファイルが存在しません)
+FileDeleted|N/A (ファイルが削除されました)
+SettingsInvalid|無効です
+DatabaseOutdated|旧式です
+DatabasePickerTitle|スーパーマリオ3Dワールドのゲームディレクトリを選択してください
+InvalidFolder|ディレクトリにObjectDataとStageDataが含まれていません。
+InvalidGamePath|ゲームパスが無効です。
+InvalidProjectPath|プロジェクトパスが無効です。
+DatabaseRebuildSuccessText|データベースが再生成されました！
+DatabaseRebuildSuccessHeader|成功
+DescriptionClearText|あなたのディスクリプションデータベースを空にしてもよろしいですか？
+DescriptionClearHeader|確認
+DescriptionClearSuccessText|ディスクリプションが削除されました
+DescriptionClearSuccessHeader|成功
+ResetWarningText|全ての変更をリセットし、オブジェクトデータベースとディスクリプションデータベースを削除し、保存せずにSpotlightを終了します。<N>よろしいですか？
+ResetWarningHeader|警告
+
+GamePathLabel|ゲームディレクトリ
+ProjectPathLabel|プロジェクトディレクトリ
+ObjectParameterGroupBox|データベース
+RebuildDatabaseButton|再生成
+ClearDescriptionsButton|クリア
+RenderingGroupBox|レンダリング
+RenderAreaCheckBox|エリアを表示
+RenderSkyboxesCheckBox|スカイボックスを表示
+PlayerLabel|プレイヤー:
+PlayerNone|なし
+PlayerMario|マリオ
+PlayerLuigi|ルイージ
+PlayerPeach|ピーチ
+PlayerToad|キノピオ
+PlayerRosalina|ロゼッタ
+LoadingAndSavingGroupBox|読み込みと保存
+UniqueIDsCheckBox|特殊なオブジェクトIDのみをロードする(カスタムレベルを読み込んだ際にオブジェクトが消える場合は無効にしてください)
+EditingGroupBox|編集
+IDEditingCheckBox|ID編集を有効にする
+MiscellaneousGroupBox|その他
+LanguageLabel|言語:
+ResetSpotlightButton|リセット
+
+#オブジェクト追加のメニュー
+AddObjectsTitle|Spotlight - オブジェクトを追加する
+ObjectFromDBTab|オブジェクト
+RailTab|レール
+SearchLabel|検索
+ClassNameColumnHeader|クラス名
+EnglishNameColumnHeader|名前
+ObjectCountColumnHeader|オブジェクト
+ModelCountColumnHeader|モデル
+
+RailTypeLabel|レールタイプ
+ClosePathCheckBox|パスを閉じる
+ReverseRailCheckBox|逆にする
+RailNameColumnHeader|レール名
+AddObjectDescriptionText|概要
+AddObjectNameText|名前
+GlobalPropertyNameText|プロパティ名
+GlobalTypeText|タイプ
+GlobalSelectText|選択
+GlobalToQuickFavoritesText|お気に入りに登録
+
+NothingSelectedText|何も選択されていません
+AddObjectNoPropertiesText|プロパティなし
+AddObjectSinglePropertyText|{0}プロパティ
+AddObjectMultiPropertyText|{0}プロパティ
+NoDescriptionFoundText|概要が見つかりませんでした。
+SearchResultsSuccessText|検索結果 {0}
+SearchResultsFailureText|{0}の結果がありませんでした
+SaveDescriptionText|1つ以上のオブジェクトの概要を編集しました<N>保存しますか？
+SaveDescriptionHeader|変更を保存しますか？
+
+#ゾーン追加のメニュー
+AddZonesTitle|Spotlight - ゾーンの追加
+FilterZonesCheckbox|ゾーンをフィルターする
+OKButton|OK
+CancelSelectionButton|キャンセル
+
+#ローディングバー
+LoadingLevelText|レベルをロードしています...
+DatabaseGeneratingText|データベースを生成しています...
+OperationCompleteText|完了！
+
+#オブジェクトパラメータのメニュー
+ObjectParametersTitle|Spotlight - オブジェクトパラメータエディター
+TypeDefInteger|整数
+TypeDefSingle|十進数
+TypeDefString|テキスト
+TypeDefBoolean|チェックボックス
+RemoveParameterText|取り除く
+UseProgrammingTermsCheckbox|プログラミング用語を使う
+ObjectParameterAddText|追加
+
+#レベルパラメータのメニュー
+LevelParamTitle|Spotlight - レベルパラメータ
+SaveSuccessHeader|注意
+SaveSuccessText|保存されました！
+SaveSuccessHeader|警告
+SaveSuccessText|保存できませんでした。
+CourseLabel|ワールド {0}-{1}
+
+ChangeLevels|レベルを変更
+Save|保存
+StageNameLabel|ステージ名
+StageNameDefault|レベルが選択されていません
+StageTypeLabel|ステージタイプ
+GlobalIDLabel|グローバルID
+StampCheckBox|ハンコがある
+TimeLabel|時間
+GreenStarUnlockCountLabel|ステージ解除に要るグリーンスター数
+GreenStarLabel|グリーンスター
+DoubleCherryLabel|ダブルチェリー最大人数
+GhostTimeLabel|ゴーストMiiの時間
+GhostIDLabel|ゴーストMiiのID
+
+#レベル選択のメニュー
+LevelSelectTitle|Spotlight - ステージを選択
+CourseIDColumnHeader|コースID
+LevelNameColumnHeader|ステージ名
+
+#ワールド名
+WorldName1|WORLD 1
+WorldName2|WORLD 2
+WorldName3|WORLD 3
+WorldName4|WORLD 4
+WorldName5|WORLD 5
+WorldName6|WORLD 6
+WorldName7|WORLD 城
+WorldName8|WORLD クッパ
+WorldName9|WORLD スター
+WorldName10|WORLD キノコ
+WorldName11|WORLD フラワー
+WorldName12|WORLD 王冠
+
+#レベル名
+<Stage Filename>|<In-game name>
+
+#WORLD 1
+EnterCatMarioStage|スーパーベルの丘
+NokonokoCaveStage|ノコノコ地下洞窟
+ClimbMountainStage|てっぺんめざせ！ノッポ山
+DownRiverStage|プレッシーのザブンリバー
+FlipCircusStage|オン！オフ！スイッチサーカス
+KinopioHouseLv1BlueStage|キノピオの家Lv1
+KinopioHouseLv1InsideStage|キノピオの家Lv1
+KinopioBrigadeTentenStage|キノピオ隊長のさいしょの冒険
+KoopaChaseLv1Stage|対決!クッパのハイウェイ城
+RouletteRoomZone|スロットハウス
+GateKeeperBullLv1Stage|とおせんぼ！ブル
+
+#WORLD 2
+SideWaveDesertStage|砂漠のツッコンドル遺跡
+TouchAndMikeStage|さわって！吹いて！ひきだし山脈
+ShadowTunnelStage|影の路地裏
+RotateFieldStage|くるくる回転平原
+DoubleMarioFieldStage|ダブルチェリー峠
+FairyHouseBlueStage|妖精の家
+MysteryHouseEnemyStage|倒して！倒して！ミステリーハウス
+KillerTankStage|クッパ軍のキラー戦車
+GateKeeperKuribonLv1Stage|とおせんぼ！でかクリボン
+
+#WORLD 3
+SnowBallParkStage|スノーボールパーク
+ClimbWirenetStage|かなあみアスレチック
+TeresaConveyorStage|オバケ屋敷のうごく床
+ShortGardenStage|ラブリーガーデン
+DokanAquariumStage|土管の入り江
+DashRidgeStage|ダッシュレーシング
+TruckWaterfallStage|あっちこっち トロッコの谷
+KinopioHouseLv2BlueStage|キノピオの家Lv2
+KinopioBrigadeWaterStage|キノピオ隊長とふしぎな湖
+KillerExpressStage|突入！キラーエクスプレス
+GateKeeperKameckLv1Stage|とおせんぼ！カメック
+GateKeeperTentackLv1Stage|対決！！ヘビースネーク
+
+#WORLD 4
+CrawlerHillStage|アリへいの巣穴
+PipePackunDenStage|のびのびパックンの沼
+ChikaChikaBoomerangStage|ピッピッピッ！空中散歩
+TrampolineHighlandStage|トランポリン高原
+GabonMountainStage|ガボンマウンテン
+FairyHouseInsideStage|妖精の家(中)
+MysteryHouseDashStage|駆け抜けろ！ミステリーハウス
+BossGorobonStage|転がる岩の溶岩砦
+GateKeeperGorobonLv1Stage|とおせんぼ！ゴロボン
+GateKeeperFireBrosLv1Stage|かくれファイアブロス その1
+
+#WORLD 5
+NokonokoBeachStage|サンサンビーチ
+SwingCircusStage|ぶらぶら ブランコサーカス
+ShortMultiLiftStage|ちょっとした街角
+SavannaRockStage|かけまわれ！ワイルドサバンナ
+BombCaveStage|バクレツ！ボム洞窟
+JumpFlipSweetsStage|ジャンプ！ホイップ！スイーツ
+SneakingLightStage|かいくぐれ！サーチライト
+GoldenExpressStage|ゴールデンエクスプレス
+KinopioHouseLv3BlueStage|キノピオの家Lv3
+KinopioBrigadeTeresaStage|キノピオ隊長とオバケ屋敷
+BossWackunFortressStage|ガッチンキングの砦
+GateKeeperBullLv2Stage|とおせんぼ！ブルふたたび
+GateKeeperFireBrosLv2Stage|かくれファイアブロス その2
+
+#WORLD 6
+RouteDokanTourStage|とうめい土管ツアー
+WeavingShipStage|ゆらゆら幽霊船
+KarakuriCastleStage|タッチ！謎のからくり城
+JungleCruiseStage|イカダでジャングルツアー
+BlastSnowFieldStage|とっぷうの雪山
+ClimbFortressStage|攻略！キラー要塞
+ChorobonTowerStage|チョロボン炭鉱
+MysteryHouseBallStage|投げろ！ミステリーハウス
+BombTankStage|クッパ軍のボム戦車
+GateKeeperKyupponLv1Stage|とおせんぼ！ドンケツプリンス
+GateKeeperFireBrosLv3Stage|かくれファイアブロス その3
+GateKeeperBossBunretsuLv1Stage|対決！！ボスブンレツ
+
+#WORLD 城
+FireBrosFortressStage|ファイアブロスの砦
+DarkFlipPanelStage|まっくらスイッチ遺跡
+ShortAmidaStage|灼熱ジャンクション
+DonketsuArrowStepStage|ドンケツのアッチッちたい
+ZigzagBuildingStage|スケルトンタワーのワナ
+SyumockSpotStage|シュモックのなわばり
+RagingMagmaStage|グツグツ溶岩湖
+KinopioHouseLv3LavaStage|キノピオの家Lv3(マグマ)
+FairyHouseLavaStage|妖精の家(マグマ)
+KinopioBrigadeConveyorStage|キノピオ隊長とドッスン工場
+KoopaChaseLv2Stage|激突！クッパの溶岩城
+GateKeeperGorobonLv2Stage|とおせんぼ！ゴロボンふたたび
+GateKeeperKyupponLv2Stage|とおせんぼ！ドンケツプリンス
+GateKeeperFireBrosLv4Stage|かくれファイアブロス その4
+
+#WORLD クッパ
+NeedleBridgeStage|トゲトゲブリッジ
+DownDesertStage|プレッシーのサラサラ砂丘
+GearSweetsStage|くるくるブラウニーパーク
+EchoRoadStage|イルミネーションロード
+WaterElevatorCaveStage|すいすい 水エレベーター
+DarknessHauntedHouseStage|照らせ！くらやみ屋敷
+GotogotonValleyStage|ゴトゴトンの溶岩谷
+KinopioHouseLv3NightStage|キノピオの家Lv3(夜)
+KinopioHouseLv3NightStage|キノピオの家Lv3(夜)
+FairyHouseNightStage|妖精の家(夜)
+MysteryHouseClimbStage|よじのぼれ！ミステリーハウス
+EnemyExpressStage|突入！エネミーエクスプレス
+KoopaLastStage|決戦！クッパランドのスーパータワー
+GateKeeperBossBunretsuLv2Stage|ボスブンレツ ふたたび！！
+GateKeeperTentackLv2Stage|ヘビースネーク ふたたび！！
+
+#WORLD スター
+RainbowRoadStage|レインボーパーク
+GalaxyRoadStage|スーパーギャラクシー
+WheelCanyonStage|回せ！つみ木のアスレチック
+GoalPoleRunawayStage|飛びつけ！ゴールポール
+BlockLandStage|ブロックランド
+HexScrollStage|星空ロッカクロード
+GiantUnderGroundStage|探検！でっかい洞窟
+TerenFogStage|霧の中のテレン
+BoxKillerStage|砲台のキケン地帯
+KinopioBrigadeRotateRoomStage|キノピオ隊長とまわる部屋
+
+#WORLD キノコ
+ArrangeRotateFieldStage|急げ！夜の回転平原
+ArrangeClimbMountainStage|トゲトゲ！ノッポ山
+ArrangeJungleCruiseStage|真夜中ジャングルツアー
+ArrangeShadowTunnelStage|路地裏のタワークリボー
+ArrangeKarakuriCastleStage|もっと！謎のからくり城
+ArrangeWeavingShipStage|巨大ゆらゆら幽霊船
+ArrangeDonketsuArrowStepStage|こわれかけのアッチッちたい
+ArrangeMysteryHouseEnemyStage|もっと倒して！ミステリーハウス
+
+#WORLD フラワー
+ArrangeFlipCircusStage|ビリビリ！スイッチサーカス
+ArrangeChorobonTowerStage|チョロボンと水の炭鉱
+ArrangePipePackunDenStage|照らせ！のびのびパックンの沼
+ArrangeFireBrosFortressStage|急げ！ファイアブロスの砦
+ArrangeSavannaRockStage|追いかけろ！ワイルドサバンナ
+ArrangeTeresaConveorStage|オバケ屋敷のうごく床 ふたたび
+ArrangeDokanAquariumStage|砲台の入り江
+ArrangeChikaChikaBoomerangStage|ドタバタ！空中散歩
+ArrangeNokonokoBeachStage|タワークリボービーチ
+ArrangeHexScrollStage|青空ロッカクロード
+ArrangeNeedleBridgeStage|潜入！トゲトゲブリッジ
+ArrangeBossParadeStage|ボスパラダイス
+
+#WORLD 王冠
+ChampionshipStage|ファイナル！チャンピオンシップロード
+KinopioBrigadeInfernoStage|キノピオ隊長のさいごの冒険
+MysteryHouseMaxStage|限界！ミステリーハウス
+
+#その他
+WorldNameMisc|その他
+CourseSelectStage|コースセレクト

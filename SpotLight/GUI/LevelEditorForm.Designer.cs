@@ -127,7 +127,7 @@
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitContainer2.Font = new System.Drawing.Font("Segoe UI", 17.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainer2.Name = "splitContainer2";
@@ -213,7 +213,7 @@
             this.ZonesTabPage.Margin = new System.Windows.Forms.Padding(6);
             this.ZonesTabPage.Name = "ZonesTabPage";
             this.ZonesTabPage.Padding = new System.Windows.Forms.Padding(6);
-            this.ZonesTabPage.Size = new System.Drawing.Size(467, 412);
+            this.ZonesTabPage.Size = new System.Drawing.Size(467, 415);
             this.ZonesTabPage.TabIndex = 0;
             this.ZonesTabPage.Text = "Zones";
             this.ZonesTabPage.UseVisualStyleBackColor = true;
@@ -227,7 +227,7 @@
             this.ZoneListBox.Location = new System.Drawing.Point(6, 6);
             this.ZoneListBox.Margin = new System.Windows.Forms.Padding(6);
             this.ZoneListBox.Name = "ZoneListBox";
-            this.ZoneListBox.Size = new System.Drawing.Size(455, 358);
+            this.ZoneListBox.Size = new System.Drawing.Size(455, 361);
             this.ZoneListBox.TabIndex = 3;
             this.ZoneListBox.SelectedIndexChanged += new System.EventHandler(this.ZoneListBox_SelectedIndexChanged);
             // 
@@ -236,7 +236,7 @@
             this.EditIndividualButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.EditIndividualButton.Enabled = false;
             this.EditIndividualButton.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EditIndividualButton.Location = new System.Drawing.Point(6, 364);
+            this.EditIndividualButton.Location = new System.Drawing.Point(6, 367);
             this.EditIndividualButton.Margin = new System.Windows.Forms.Padding(6);
             this.EditIndividualButton.Name = "EditIndividualButton";
             this.EditIndividualButton.Size = new System.Drawing.Size(455, 42);
@@ -253,7 +253,7 @@
             this.ObjectsTabPage.Margin = new System.Windows.Forms.Padding(6);
             this.ObjectsTabPage.Name = "ObjectsTabPage";
             this.ObjectsTabPage.Padding = new System.Windows.Forms.Padding(6);
-            this.ObjectsTabPage.Size = new System.Drawing.Size(467, 412);
+            this.ObjectsTabPage.Size = new System.Drawing.Size(467, 415);
             this.ObjectsTabPage.TabIndex = 1;
             this.ObjectsTabPage.Text = "Objects";
             this.ObjectsTabPage.UseVisualStyleBackColor = true;
@@ -267,7 +267,7 @@
             this.MainSceneListView.Margin = new System.Windows.Forms.Padding(6);
             this.MainSceneListView.Name = "MainSceneListView";
             this.MainSceneListView.Scene = null;
-            this.MainSceneListView.Size = new System.Drawing.Size(455, 400);
+            this.MainSceneListView.Size = new System.Drawing.Size(455, 403);
             this.MainSceneListView.TabIndex = 1;
             this.MainSceneListView.ItemClicked += new GL_EditorFramework.ItemClickedEventHandler(this.MainSceneListView_ItemClicked);
             // 
