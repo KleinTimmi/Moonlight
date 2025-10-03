@@ -1,0 +1,47 @@
+name: Build Moonlight & Spotlight
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+        platform: ["Any CPU"]
+
+    steps:
+      # 1. Checkout main repo
+      - name: Checkout Spotlight
+        uses: actions/checkout@v3
+
+      # 2. Clone dependent repositories
+      - name: Clone GL_EditorFramework
+        run: git clone https://github.com/jupahe64/GL_EditorFramework.git ../GL_EditorFramework
+
+
+      # 3. Setup MSBuild
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      # 4. Setup NuGet
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      # 5. Restore NuGet packages
+      - name: Restore NuGet packages
+        run: nuget restore Spotlight.sln
+
+      # 6. Build Moonlight and Spotlight
+      - name: Build Solution
+        run: msbuild Spotlight.sln /p:Configuration=${{ matrix.configuration }} /p:Platform="${{ matrix.platform }}"
+
+      # 8. Upload build artifacts
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Spotlight-${{ matrix.configuration }}
+          path: Spotlight/bin/${{ matrix.configuration }}/**

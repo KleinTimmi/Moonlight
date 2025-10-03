@@ -364,21 +364,11 @@
     <Resource Include="Resources\DefaultTexture.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Languages\Deutsch.txt" />
-    <Content Include="Languages\English.txt" />
-    <Content Include="Languages\Japanese.txt" />
+    <Content Include="Languages" />
     <Content Include="LatestVersion.txt" />
     <None Include="Resources\BootTvTex.png" />
     <None Include="Resources\SpotlightCanvas.png" />
-    <None Include="Splash\ArrangeNokonokoBeachStage.png" />
-    <None Include="Splash\ArrangePipePackunDenStage.png" />
-    <None Include="Splash\BombCaveStage.png" />
-    <None Include="Splash\DoubleMarioFieldStage.png" />
-    <None Include="Splash\EnterCatMarioStage.png" />
-    <None Include="Splash\KarakuriCastleStage.png" />
-    <None Include="Splash\KoopaLastStageA.png" />
-    <None Include="Splash\KoopaLastStageB.png" />
-    <None Include="Splash\NokonokoBeachStage.png" />
+    <None Include="Splash" />
     <None Include="Resources\Gizmos.png" />
     <None Include="Resources\InfoIndicator.png" />
     <None Include="Resources\InfoIndicatorHighlight.png" />
