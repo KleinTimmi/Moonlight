@@ -282,6 +282,7 @@
             this.ObjectUIControl.Name = "ObjectUIControl";
             this.ObjectUIControl.Size = new System.Drawing.Size(463, 468);
             this.ObjectUIControl.TabIndex = 1;
+            this.ObjectUIControl.Load += new System.EventHandler(this.ObjectUIControl_Load);
             // 
             // CurrentObjectLabel
             // 
@@ -766,8 +767,6 @@
             // 
             // LevelEditorForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1437, 1035);
             this.Controls.Add(this.CancelAddObjectButton);
             this.Controls.Add(this.splitContainer1);

@@ -45,8 +45,8 @@ namespace Spotlight
             Process_Per_Monitor_DPI_Aware = 2
         }
 
-        //[DllImport("SHCore.dll", SetLastError = true)]
-        //private static extern bool SetProcessDpiAwareness(PROCESS_DPI_AWARENESS awareness);
+        [DllImport("SHCore.dll", SetLastError = true)]
+        private static extern bool SetProcessDpiAwareness(PROCESS_DPI_AWARENESS aWARENESS);
 
         /// <summary>
         /// The main entry point for the application.
@@ -55,7 +55,7 @@ namespace Spotlight
         static void Main()
         {
 
-            //SetProcessDpiAwareness(PROCESS_DPI_AWARENESS.Process_Per_Monitor_DPI_Aware);
+            SetProcessDpiAwareness(PROCESS_DPI_AWARENESS.Process_DPI_Unaware);
 
             string platform;
 

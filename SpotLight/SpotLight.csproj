@@ -301,6 +301,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\LevelSelectForm.resx">
       <DependentUpon>LevelSelectForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\LoadLevelForm.resx">
       <DependentUpon>LoadLevelForm.cs</DependentUpon>

@@ -24,6 +24,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Interop;
 using static GL_EditorFramework.EditorDrawables.EditorSceneBase;
 using static GL_EditorFramework.Framework;
 
@@ -84,11 +85,13 @@ namespace Spotlight.GUI
 
         protected override bool ProcessKeyPreview(ref Message m)
         {
+            const int WM_KEYDOWN = 0x0100;
+            const int WM_KEYUP = 0x0101;
             Keys keyData = (Keys)(unchecked((int)(long)m.WParam)) | ModifierKeys;
 
             if (keyData == KS_RenderAreas)
             {
-                if (m.Msg == 0x0100) //WM_KEYDOWN
+                if (m.Msg == WM_KEYDOWN) //WM_KEYDOWN = 0x0100
                 {
                     Properties.Settings.Default.DrawAreas = !Properties.Settings.Default.DrawAreas;
                     Properties.Settings.Default.Save();
@@ -96,7 +99,7 @@ namespace Spotlight.GUI
             }
             else if (keyData == KS_RenderSkyboxes)
             {
-                if (m.Msg == 0x0100) //WM_KEYDOWN
+                if (m.Msg == WM_KEYDOWN) //WM_KEYDOWN = 0x0100
                 {
                     Properties.Settings.Default.DrawSkyBoxes = !Properties.Settings.Default.DrawSkyBoxes;
                     Properties.Settings.Default.Save();
@@ -104,16 +107,47 @@ namespace Spotlight.GUI
             }
             else if (keyData == KS_TransparentWalls)
             {
-                if (m.Msg == 0x0100) //WM_KEYDOWN
+                if (m.Msg == WM_KEYDOWN) //WM_KEYDOWN = 0x0100
                 {
                     Properties.Settings.Default.DrawTransparentWalls = !Properties.Settings.Default.DrawTransparentWalls;
                     Properties.Settings.Default.Save();
                 }
             }
 
+            if (m.Msg == WM_KEYDOWN)
+            {
+                // Prüfen, ob ein Texteingabefeld den Fokus hat
+                Keys keyOnly = keyData & Keys.KeyCode;
+                bool isCtrl = (ModifierKeys & Keys.Control) == Keys.Control;
+
+                System.Diagnostics.Debug.WriteLine($" -> keyOnly={keyOnly}, isCtrl={isCtrl}");
+
+                // Szenario-Wechsel nur bei STRG+Nummer
+                if (isCtrl && scenarioHotkeys.TryGetValue(keyOnly, out int scenarioIndex))
+                {
+                    System.Diagnostics.Debug.WriteLine($" -> scenarioHotkeys hit: index={scenarioIndex}");
+
+                    currentScene.SetScenario(scenarioIndex);
+                    currentScene.EditZone.SetScenario(scenarioIndex);
+                    layerListControl.SetScenario(scenarioIndex);
+
+                    UpdateLayerList();
+#if ODYSSEY
+                    ScenarioComboBox.SelectedIndex = scenarioIndex;
+#endif
+                    LevelGLControlModern.Refresh();
+                    MainSceneListView.Refresh();
+                    return true;
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine(" -> scenarioHotkeys miss");
+                }
+            }
+
             if (LevelGLControlModern.IsHovered)
             {
-                if (m.Msg == 0x0100) //WM_KEYDOWN
+                if (m.Msg == WM_KEYDOWN) //WM_KEYDOWN = 0x0100
                 {
                     if (keyData == KS_AddObject)
                         AddObjectToolStripMenuItem_Click(null, null);
@@ -122,7 +156,7 @@ namespace Spotlight.GUI
 
                     LevelGLControlModern.PerformKeyDown(new KeyEventArgs(keyData));
                 }
-                else if (m.Msg == 0x0101) //WM_KEYUP
+                else if (m.Msg == WM_KEYUP) //WM_KEYUP = 0x0101
                 {
                     LevelGLControlModern.PerformKeyUp(new KeyEventArgs(keyData));
                 }
@@ -146,38 +180,7 @@ namespace Spotlight.GUI
             if (!LevelGLControlModern.IsHovered && IsExclusiveKey(keyData))
                 return false;
 
-            const int WM_KEYDOWN = 0x0100;
-
-            // Debug-Ausgaben, damit sichtbar wird, ob die Methode ausgeführt wird
-            System.Diagnostics.Debug.WriteLine($"ProcessCmdKey called: msg=0x{msg.Msg:X}, keyData={keyData}");
-
-            if (msg.Msg == WM_KEYDOWN)
-            {
-                // nur KeyCode-Teil betrachten (ohne Modifiers)
-                Keys keyOnly = keyData & Keys.KeyCode;
-                System.Diagnostics.Debug.WriteLine($" -> keyOnly={keyOnly}");
-
-                if (scenarioHotkeys.TryGetValue(keyOnly, out int scenarioIndex))
-                {
-                    System.Diagnostics.Debug.WriteLine($" -> scenarioHotkeys hit: index={scenarioIndex}");
-
-                    currentScene.SetScenario(scenarioIndex);
-                    currentScene.EditZone.SetScenario(scenarioIndex);
-                    layerListControl.SetScenario(scenarioIndex);
-
-                    UpdateLayerList();
-#if ODYSSEY
-                    ScenarioComboBox.SelectedIndex = scenarioIndex;
-#endif
-                    LevelGLControlModern.Refresh();
-                    MainSceneListView.Refresh();
-                    return true;
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine(" -> scenarioHotkeys miss");
-                }
-            }
+            
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -2182,6 +2185,10 @@ Would you like to rebuild the database from your SMO Files?";
 
         }
 
+        private void ObjectUIControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
