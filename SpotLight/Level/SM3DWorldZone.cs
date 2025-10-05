@@ -21,10 +21,18 @@ using static GL_EditorFramework.EditorDrawables.EditorSceneBase;
 
 namespace Spotlight.Level
 {
+    /// <summary>
+    /// A typed list that contains only <see cref="I3dWorldObject"/> instances.
+    /// </summary>
     public class ObjectList : List<I3dWorldObject>
     {
 
     }
+
+    /// <summary>
+    /// Represents a layer (<c>Layer</c>) inside a level.  
+    /// Layers determine which objects appear in which scenario or by user selection.
+    /// </summary>
 
     public class Layer
     {
@@ -457,13 +465,12 @@ namespace Spotlight.Level
         {
             loadedZones.Remove(StageInfo);
         }
-#endregion
+        #endregion
 
-#region loading
-        //these methods just cover getting the bymls that contain the object placements and all the extra files
-
-        //for actually parsing the byml and getting it's objects it uses the LevelReader class
-        //afterwards EvaluateLayers uses all read objects to evaluate which layers are used
+        #region loading
+        ///these methods just cover getting the bymls that contain the object placements and all the extra files
+        ///for actually parsing the byml and getting it's objects it uses the <see cref="LevelReader"/> LevelReader class
+        ///afterwards EvaluateLayers uses all read objects to evaluate which layers are used
 
         public static bool TryOpen(string directory, string stageName, out SM3DWorldZone zone)
         {
@@ -1263,13 +1270,6 @@ namespace Spotlight.Level
 #endregion
     }
 }
-
-
-
-
-
-
-
 
 public static class Extensions
 {

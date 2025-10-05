@@ -1,27 +1,37 @@
-﻿using BYAML;
+﻿using BfresLibrary;
+using BfresLibrary.Core;
+using BfresLibrary.Switch;
+using BYAML;
 using GL_EditorFramework;
 using GL_EditorFramework.EditorDrawables;
 using GL_EditorFramework.GL_Core;
 using GL_EditorFramework.Interfaces;
+using Moonlight.ObjectRenderers;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
-using Spotlight.Level;
+using SARCExt;
+using SharpGLTF.Schema2;
 using Spotlight.Database;
+using Spotlight.Level;
+using Spotlight.ObjectRenderers;
+using Spotlight.Properties;
 using Syroot.BinaryData;
+using Syroot.NintenTools.NSW.Bntx.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using SZS;
 using static BYAML.ByamlNodeWriter;
 using static GL_EditorFramework.EditorDrawables.EditorSceneBase;
 using WinInput = System.Windows.Input;
-using Spotlight.ObjectRenderers;
-using System.Diagnostics;
 
 namespace Spotlight.EditorDrawables
 {
@@ -41,6 +51,15 @@ namespace Spotlight.EditorDrawables
             set => Position = Vector4.Transform(new Vector4(value, 1), SceneDrawState.ZoneTransform.PositionTransform.Inverted()).Xyz;
         }
 
+        public List<string> attachedVisualParts = new();
+        public void AttachVisualPart(string modelName)
+        {
+            TryLoadAttachedVisualPart(modelName); // ← lädt das Modell, falls nötig
+            if (!attachedVisualParts.Contains(modelName))
+                attachedVisualParts.Add(modelName);
+        }
+
+        private static HashSet<SM3DWorldZone> loadedZones = new();
         public override Matrix3 GlobalRotation
         {
             get => Framework.Mat3FromEulerAnglesDeg(Rotation) * SceneDrawState.ZoneTransform.RotationTransform;
@@ -88,6 +107,54 @@ namespace Spotlight.EditorDrawables
         public Dictionary<string, List<I3dWorldObject>> Links { get; set; } = null;
         public Dictionary<string, dynamic> Properties { get; set; } = new Dictionary<string, dynamic>();
 
+        public Dictionary<string, Vector3> partOffsets = new();
+
+        public Dictionary<string, string > bonesDic = new();
+        public Dictionary<string, string > MainBonesDic = new();
+
+        Dictionary<string, string> modelSuffixMap = new Dictionary<string, string>();
+
+        Dictionary<string, string> jointNameMap = new Dictionary<string, string>();
+
+        private Dictionary<string, Bone> boneTransformMap = new Dictionary<string, Bone>();
+
+        private Dictionary<string, Matrix4> subModelMatrices = new Dictionary<string, Matrix4>();
+
+        private Matrix4 CalculateSubModelMatrix(string modelName, Bone bone, Matrix4 mainModelWorldMatrix)
+        {
+            // Nur Position (cm → m)
+            Vector3 bonePosition = new Vector3(
+                bone.Position.X / 100.0f,
+                bone.Position.Y / 100.0f,
+                bone.Position.Z / 100.0f
+            );
+
+            // Nur Translation, keine Rotation des Bones!
+            Matrix4 boneLocalMatrix = Matrix4.CreateTranslation(bonePosition);
+
+            // Weltmatrix: Hauptmodell-Welt * Bone-Position
+            Matrix4 finalMatrix = mainModelWorldMatrix * boneLocalMatrix;
+
+            return finalMatrix;
+        }
+
+
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<string> SubModelNames { get; } = new List<string>();
+
+       
+        
+
         readonly string comment = null;
 
         private static readonly Dictionary<string, List<I3dWorldObject>> EMPTY_LINKS = new Dictionary<string, List<I3dWorldObject>>();
@@ -125,13 +192,23 @@ namespace Spotlight.EditorDrawables
                     Properties.Add(entry.Key, entry.Parse()??"");
                 }
             }
-
+            
             DoModelLoad();
             
             zone?.SubmitID(ID);
 
 
             loadLinks = true;
+
+
+            if (!loadedZones.Contains(zone))
+            {
+                Cam.setupCameraLoad(zone);
+                loadedZones.Add(zone);
+            }
+
+
+
         }
 
         public General3dWorldObject(
@@ -293,9 +370,8 @@ namespace Spotlight.EditorDrawables
             }
         }
 
-#endregion
+        #endregion
 
-        
 
         /// <summary>
         /// Draws the model to the given GL_Control
@@ -305,12 +381,17 @@ namespace Spotlight.EditorDrawables
         /// <param name="editorScene">The current Editor Scene</param>
         public override void Draw(GL_ControlModern control, Pass pass, EditorSceneBase editorScene)
         {
+
+
             if (!Selected)
             {
-                if (!Spotlight.Properties.Settings.Default.DrawSkyBoxes && ClassName == "SkyProjection")
+                if (!Spotlight.Properties.Settings.Default.DrawSkyBoxes && ClassName == "SkyProjection" )
                 {
                     control.SkipPickingColors(1);
+                    
                     return;
+                }else
+                {
                 }
 
                 if (!Spotlight.Properties.Settings.Default.DrawTransparentWalls && ObjectName.Contains("TransparentWall"))
@@ -334,6 +415,8 @@ namespace Spotlight.EditorDrawables
 
             Vector4 highlightColor;
 
+
+
             if (SceneDrawState.HighlightColorOverride.HasValue)
                 highlightColor = SceneDrawState.HighlightColorOverride.Value;
             else if (Selected && hovered)
@@ -347,6 +430,44 @@ namespace Spotlight.EditorDrawables
 
             if (SceneObjectIterState.InLinks && LinkDestinations.Count == 0)
                 highlightColor = new Vector4(1, 0, 0, 1) * 0.5f + highlightColor * 0.5f;
+
+            // Draw all attached visual parts
+            foreach (var partName in attachedVisualParts)
+            {
+                // Remove .bfres extension for internal lookup
+                string cleanName = partName.Replace(".bfres", "");
+
+                // Prüfe ob es ein Sub-Model mit spezieller Positionierung ist
+                if (subModelMatrices.TryGetValue(cleanName, out Matrix4 subModelMatrix))
+                {
+                    // Verwende die berechnete Bone-Matrix
+                    control.UpdateModelMatrix(subModelMatrix);
+                }
+                else
+                {
+                    // Normale Positionierung wie bisher
+                    Vector3 offset = partOffsets.TryGetValue(cleanName, out var o) ? o : Vector3.Zero;
+                    Vector3 globalPos = Selected
+                        ? editorScene.SelectionTransformAction.NewPos(GlobalPosition)
+                        : GlobalPosition;
+
+                    control.UpdateModelMatrix(
+                        Matrix4.CreateTranslation(offset) *
+                        Matrix4.CreateTranslation(DisplayTranslation) *
+                        Matrix4.CreateScale(Selected
+                            ? editorScene.SelectionTransformAction.NewScale(GlobalScale, rotMtx)
+                            : GlobalScale) *
+                        new Matrix4(Selected
+                            ? editorScene.SelectionTransformAction.NewRot(rotMtx)
+                            : rotMtx) *
+                        Matrix4.CreateTranslation(globalPos)
+                    );
+                }
+
+                // Try to draw the part using the renderer
+                BfresModelRenderer.TryDraw(cleanName, control, pass, highlightColor);
+            }
+
 
 
             //Gizmos don't need the object transforms
@@ -385,6 +506,54 @@ namespace Spotlight.EditorDrawables
                 lineColor.W = 1;
 
                 Renderers.ColorCubeRenderer.Draw(control, pass, blockColor, lineColor, control.NextPickingColor());
+
+                
+
+
+            }
+        }
+
+        private void TryLoadAttachedVisualPart(string modelName)
+        {
+            modelName = modelName.Replace(".bfres", "");
+
+            if (BfresModelRenderer.Contains(modelName))
+                return;
+
+            string path = Program.TryGetPathViaProject("ObjectData", modelName + ".szs");
+            if (!File.Exists(path))
+                return;
+
+            var arc = SARCExt.SARC.UnpackRamN(YAZ0.Decompress(path));
+            if (arc.Files.ContainsKey(modelName + ".bfres"))
+            {
+                BfresModelRenderer.Submit(modelName, new MemoryStream(arc.Files[modelName + ".bfres"]), null);
+            }
+        }
+
+        public static void EnsureModelLoaded(string modelName)
+        {
+            string cleanName = modelName.Replace(".bfres", "");
+            string path = Program.TryGetPathViaProject("ObjectData", cleanName + ".szs");
+
+            if (!File.Exists(path))
+            {
+                Console.WriteLine($"❌ File not found: {path}");
+                return;
+            }
+
+            if (!BfresModelRenderer.Contains(cleanName))
+            {
+                var arc = SARCExt.SARC.UnpackRamN(YAZ0.Decompress(path));
+                if (arc.Files.ContainsKey(cleanName + ".bfres"))
+                {
+                    BfresModelRenderer.Submit(cleanName, new MemoryStream(arc.Files[cleanName + ".bfres"]), null);
+                    Console.WriteLine($"✅ Loaded: {cleanName}");
+                }
+                else
+                {
+                    Console.WriteLine($"❌ .bfres not found in archive: {cleanName}");
+                }
             }
         }
 
@@ -396,31 +565,289 @@ namespace Spotlight.EditorDrawables
 
         public void DoModelLoad()
         {
+            // Try loading all visual parts attached to this model
+            foreach (var partName in attachedVisualParts)
+                TryLoadAttachedVisualPart(partName);
+
+            // Determine model and sub-actor names
             string mdlName = string.IsNullOrEmpty(ModelName) ? ObjectName : ModelName;
+            string subActorName = mdlName; // For consistency, use the same name initially
+
+            // Avoid reloading if the model is already registered
             if (BfresModelRenderer.Contains(mdlName))
                 return;
-            string Result = Program.TryGetPathViaProject("ObjectData", mdlName + ".szs");
-            if (File.Exists(Result))
+
+            // Try to find the model file within the project’s ObjectData directory
+            string modelPath = Program.TryGetPathViaProject("ObjectData", mdlName + ".szs");
+            if (!File.Exists(modelPath))
+                return;
+
+            // Unpack the compressed SZS archive (YAZ0 + SARC)
+            var objArc = SARCExt.SARC.UnpackRamN(YAZ0.Decompress(modelPath));
+
+            // Ensure the main .bfres model file exists
+            if (!objArc.Files.ContainsKey(mdlName + ".bfres"))
+                return;
+
+
+
+
+
+            // --- Load InitModel.byml if available ---
+            if (objArc.Files.ContainsKey("InitModel.byml")) //objArc = .szs
             {
-                SARCExt.SarcData objArc = SARCExt.SARC.UnpackRamN(YAZ0.Decompress(Result));
+                dynamic initModel = ByamlFile.FastLoadN(
+                    new MemoryStream(objArc.Files["InitModel.byml"]),
+                    false,
+                    ByteOrder.BigEndian
+                ).RootNode;
 
-                if (objArc.Files.ContainsKey(mdlName + ".bfres"))
+
+
+                if (initModel is Dictionary<string, dynamic> initDict)
                 {
-                    if (objArc.Files.ContainsKey("InitModel.byml"))
-                    {
-                        dynamic initModel = ByamlFile.FastLoadN(new MemoryStream(objArc.Files["InitModel.byml"]), false, ByteOrder.BigEndian).RootNode;
+                    // Extract optional texture archive name
+                    dynamic texArc = initDict.TryGetValue("TextureArc", out var texArcVal) ? texArcVal : null;
 
-                        if (initModel is Dictionary<string, dynamic>)
-                        {
-                            BfresModelRenderer.Submit(mdlName, new MemoryStream(objArc.Files[mdlName + ".bfres"]),
-                            initModel.TryGetValue("TextureArc", out dynamic texArc) ? texArc : null);
-                            return;
-                        }
-                    }
-                    BfresModelRenderer.Submit(mdlName, new MemoryStream(objArc.Files[mdlName + ".bfres"]), null);
+                    // Submit the base model to the renderer
+                    BfresModelRenderer.Submit(mdlName, new MemoryStream(objArc.Files[mdlName + ".bfres"]), texArc);
                 }
             }
+
+            // --- Load InitSubActor.byml if available ---
+            if (objArc.Files.ContainsKey("InitSubActor.byml"))
+            {
+
+                #region Load Main Model Bones
+
+                byte[] MainbfresData = objArc.Files[mdlName + ".bfres"];
+
+                using var Mainstream = new MemoryStream(MainbfresData);
+
+                ResFile Mainbfres = new ResFile(Mainstream);
+
+                Model Mainmodel = Mainbfres.Models[0];
+
+                Skeleton MainSkeleton = Mainmodel.Skeleton;
+                List<Bone> MainBones = MainSkeleton.Bones.Values.ToList();
+                Debug.WriteLine(MainBones.Count + " Bones in " + mdlName);
+                Bone MainRootBone = MainBones.FirstOrDefault(b => b.ParentIndex == -1);
+                if (MainRootBone != null)
+                {
+                    MainBonesDic.Add(mdlName, MainRootBone.Name); // z. B. Part → RootBoneName
+                }
+                #endregion
+
+                dynamic initSubActor = ByamlFile.FastLoadN(
+                    new MemoryStream(objArc.Files["InitSubActor.byml"]),
+                    false,
+                    ByteOrder.BigEndian
+                ).RootNode;
+
+                if (initSubActor is Dictionary<string, dynamic> subActorDict &&
+                    subActorDict.TryGetValue("CreatorList", out dynamic creatorListObj) &&
+                    creatorListObj is IEnumerable<object> creatorList)
+                {
+                    // Loop through each creator entry
+                    foreach (var item in creatorList)
+                    {
+                        if (item is IDictionary<string, object> dict &&
+                            dict.TryGetValue("ClassName", out var classNameObj) &&
+                            classNameObj is string classNameStr)
+                        {
+
+
+
+                                Debug.WriteLine($"ClassName: {classNameStr}");
+
+                            // Only handle PartsModel entries
+                            // Only handle PartsModel entries
+                            if (classNameStr == "PartsModel" &&
+                             dict.TryGetValue("ModelName", out var subModelObj) &&
+                             dict.TryGetValue("FixFileSuffixName", out var subFixFileSuffixNameObj) &&
+                             subModelObj is string subModelName &&
+                             !string.IsNullOrEmpty(subModelName))
+                            {
+                                Debug.WriteLine($"→ Found PartsModel: {subModelName} from {mdlName}");
+
+                                if (objArc.Files.ContainsKey("InitPartsFixInfo" + subFixFileSuffixNameObj + ".byml"))
+                                {
+                                    if (subFixFileSuffixNameObj is string suffixStr)
+                                    {
+                                        modelSuffixMap[subModelName] = suffixStr;
+
+                                        string fixInfoFileName = "InitPartsFixInfo" + suffixStr + ".byml";
+
+                                        dynamic initsuffixStr = ByamlFile.FastLoadN(
+                                            new MemoryStream(objArc.Files[fixInfoFileName]),
+                                            false,
+                                            ByteOrder.BigEndian
+                                        ).RootNode;
+
+                                        if (initsuffixStr != null)
+                                        {
+                                            // JointName auslesen
+                                            if (initsuffixStr is Dictionary<string, dynamic> initsuffixStrDict)
+                                            {
+                                                if (initsuffixStrDict.TryGetValue("JointName", out dynamic jointNameObj) &&
+                                                    jointNameObj is string jointName)
+                                                {
+                                                    Debug.WriteLine($"JointName: {jointName}");
+                                                    // Speichere den JointName
+                                                    jointNameMap[subModelName] = jointName;
+
+                                                    // Suche den passenden Bone im Main-Skeleton
+                                                    Bone foundBone = null;
+
+                                                    // Durchsuche alle Bones des Hauptmodells
+                                                    foreach (Bone bone in MainBones)
+                                                    {
+                                                        if (bone.Name == jointName)
+                                                        {
+                                                            foundBone = bone;
+                                                            Debug.WriteLine($"Found matching bone: {bone.Name}");
+                                                            break;
+                                                        }
+                                                    }
+
+                                                    if (foundBone == null)
+                                                    {
+                                                        Debug.WriteLine($"No matching bone found for joint: {jointName}");
+                                                    }
+                                                    else
+                                                    {
+                                                        boneTransformMap[subModelName] = foundBone;
+
+                                                        // Hauptmodell-Weltmatrix erstellen
+                                                        Matrix4 mainModelMatrix = Matrix4.CreateTranslation(GlobalPosition);
+                                                        // Falls Rotation/Scale vorhanden:
+                                                        // Matrix4 mainModelMatrix = Matrix4.CreateScale(GlobalScale) * Matrix4.CreateFromQuaternion(GlobalRotation) * Matrix4.CreateTranslation(GlobalPosition);
+
+                                                        // Sub-Model an Bone-Position im Weltkoordinatensystem platzieren
+                                                        Matrix4 subModelMatrix = CalculateSubModelMatrix(subModelName, foundBone, mainModelMatrix);
+                                                        subModelMatrices[subModelName] = subModelMatrix;
+
+                                                        Debug.WriteLine($"Main Model Position: {GlobalPosition}");
+                                                        Debug.WriteLine($"Bone Position (local): ({foundBone.Position.X / 100}, {foundBone.Position.Y / 100}, {foundBone.Position.Z / 100})");
+                                                        Debug.WriteLine($"Sub-Model World Position: {subModelMatrix.ExtractTranslation()}");
+
+
+
+                                                    }
+                                                }
+
+                                                // LocalRotate auslesen (optional)
+                                                if (initsuffixStrDict.TryGetValue("LocalRotate", out dynamic localRotateObj))
+                                                {
+                                                    if (localRotateObj is Dictionary<string, dynamic> rotateDict)
+                                                    {
+                                                        Debug.WriteLine($"LocalRotate - X: {rotateDict["X"]}, Y: {rotateDict["Y"]}, Z: {rotateDict["Z"]}");
+                                                        // Optional: Speichere LocalRotate für spätere Verwendung
+                                                        // localRotateMap[subModelName] = rotateDict;
+                                                    }
+                                                }
+
+                                                // Boolean-Werte auslesen (optional)
+                                                if (initsuffixStrDict.TryGetValue("UseFollowMtxScale", out dynamic useFollowMtxScaleObj))
+                                                {
+                                                    bool useFollowMtxScale = (bool)useFollowMtxScaleObj;
+                                                    Debug.WriteLine($"UseFollowMtxScale: {useFollowMtxScale}");
+                                                }
+
+                                                if (initsuffixStrDict.TryGetValue("UseLocalScale", out dynamic useLocalScaleObj))
+                                                {
+                                                    bool useLocalScale = (bool)useLocalScaleObj;
+                                                    Debug.WriteLine($"UseLocalScale: {useLocalScale}");
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    Debug.WriteLine("found " + "InitPartsFixInfo" + subFixFileSuffixNameObj + ".byml");
+                                }
+                                else
+                                {
+                                    Debug.WriteLine("could not find " + "InitPartsFixInfo" + subFixFileSuffixNameObj + ".byml");
+                                }
+
+                                // --- Sub-Model laden und positionieren ---
+                                string subModelPath = Program.TryGetPathViaProject("ObjectData", subModelName + ".szs");
+                                if (!File.Exists(subModelPath))
+                                    continue;
+
+                                Debug.WriteLine($"{subModelName}.szs exists");
+
+                                var subArc = SARCExt.SARC.UnpackRamN(YAZ0.Decompress(subModelPath));
+
+                                // If a submodel .bfres exists, load and attach it
+                                if (subArc.Files.ContainsKey(subModelName + ".bfres"))
+                                {
+                                    Debug.WriteLine(subModelPath);
+
+                                    byte[] bfresData = subArc.Files[subModelName + ".bfres"];
+                                    using var stream = new MemoryStream(bfresData);
+                                    ResFile bfres = new ResFile(stream);
+
+                                    Model model = bfres.Models[0];
+                                    Skeleton skeleton = model.Skeleton;
+                                    List<Bone> bones = skeleton.Bones.Values.ToList();
+                                    Debug.WriteLine(bones.Count + " Bones in " + subModelPath);
+                                    Bone rootBone = bones.FirstOrDefault(b => b.ParentIndex == -1);
+                                    if (rootBone != null)
+                                    {
+                                        bonesDic.Add(subModelName, rootBone.Name);
+                                    }
+
+                                    // Sub-Model zum Renderer hinzufügen
+                                    BfresModelRenderer.Submit(
+                                        subModelName,
+                                        new MemoryStream(subArc.Files[subModelName + ".bfres"])
+                                    );
+
+                                    // Wenn wir einen Bone für dieses Modell gefunden haben, positioniere es entsprechend
+                                    if (boneTransformMap.TryGetValue(subModelName, out Bone attachmentBone))
+                                    {
+                                        // Hier musst du das Sub-Model an die Bone-Position setzen
+                                        // Dies hängt von deiner Renderer-Implementierung ab
+                                        PositionSubModelAtBone(subModelName, attachmentBone);
+                                    }
+
+                                    AttachVisualPart(subModelName + ".bfres");
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Could not find {subModelName}.bfres inside archive!");
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            // --- Fallback: load base model if nothing else was handled ---
+            if (objArc.Files.ContainsKey(mdlName + ".bfres"))
+            {
+                BfresModelRenderer.Submit(mdlName, new MemoryStream(objArc.Files[mdlName + ".bfres"]), null);
+            }
         }
+
+        private void PositionSubModelAtBone(string modelName, Bone bone)
+        {
+            // Hier kommt die Logik zum Positionieren des Models
+            // Das hängt von deiner BfresModelRenderer-Implementierung ab
+
+            // Beispiel (angepasst an deine Implementierung):
+            // BfresModelRenderer.SetModelTransform(modelName, bone.Position, bone.Rotation, bone.Scale);
+
+            Debug.WriteLine($"Positioning model {modelName} at bone {bone.Name}");
+            Debug.WriteLine($"Bone Position: X={bone.Position.X}, Y={bone.Position.Y}, Z={bone.Position.Z}");
+            Debug.WriteLine($"Bone Rotation: X={bone.Rotation.X}, Y={bone.Rotation.Y}, Z={bone.Rotation.Z}");
+
+            // TODO: Implementiere die tatsächliche Positionierung basierend auf deinem Renderer
+        }
+
+
 
         public override bool TrySetupObjectUIControl(EditorSceneBase scene, ObjectUIControl objectUIControl)
         {

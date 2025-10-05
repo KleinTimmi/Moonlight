@@ -21,7 +21,7 @@ namespace Spotlight.Level
 
         Dictionary<string, (ushort scenarioBits, ZonePlacement placement)[]> zonePlacementsInfosByID = new Dictionary<string, (ushort scenarioBits, ZonePlacement placement)[]>();
 
-        public HashSet<Layer> readLayers = new HashSet<Layer>();
+        public HashSet<Layer> readLayers = new HashSet<Layer>(); 
 
         ushort scenarioBit = 1;
 

@@ -1,26 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BfresLibrary;
+using BfresLibrary.GX2;
+using BfresLibrary.Helpers;
+using BfresLibrary.Switch;
 using FileFormats3DW;
 using GL_EditorFramework;
 using GL_EditorFramework.GL_Core;
 using GL_EditorFramework.Interfaces;
-using OpenTK.Graphics.OpenGL;
 using OpenTK;
-using BfresLibrary;
-using BfresLibrary.Switch;
-using BfresLibrary.GX2;
-using BfresLibrary.Helpers;
-using Syroot.BinaryData;
-using Syroot.NintenTools.NSW.Bntx.GFX;
-
+using OpenTK.Graphics.OpenGL;
 using SharpGLTF.Geometry;
 using SharpGLTF.Geometry.VertexTypes;
-using System.ComponentModel;
 using SharpGLTF.Materials;
+using Spotlight.EditorDrawables;
+using Syroot.BinaryData;
+using Syroot.NintenTools.NSW.Bntx.GFX;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
+using System.Text;
+using System.Threading.Tasks;
 using SZS;
 
 namespace Spotlight.ObjectRenderers
@@ -35,9 +37,13 @@ namespace Spotlight.ObjectRenderers
 
         private static readonly Dictionary<string, Dictionary<string, int>> texArcCache = new Dictionary<string, Dictionary<string, int>>();
 
+        
+
+
         public static int DefaultTetxure;
 
         public static int NoTetxure;
+        
 
         public static void Initialize()
         {
@@ -136,7 +142,7 @@ namespace Spotlight.ObjectRenderers
                 return true;
             }
             else
-                return false;
+            return false;
         }
 
 
@@ -168,9 +174,9 @@ namespace Spotlight.ObjectRenderers
 
                 if (loadTextures && textureArc != null && File.Exists(Program.TryGetPathViaProject("ObjectData", textureArc + ".szs")) /*&& textureArc != "SingleModeBossSharedTextures" && textureArc != "SingleModeSharedTextures"*/)
                 {
-                        if (!texArcCache.ContainsKey(textureArc))
+                        if (!texArcCache.ContainsKey(textureArc)) //checks the archive for a extern Texture
                         {
-                            SARCExt.SarcData objArc = SARCExt.SARC.UnpackRamN(YAZ0.Decompress(Program.TryGetPathViaProject("ObjectData", textureArc + ".szs")));
+                            SARCExt.SarcData objArc = SARCExt.SARC.UnpackRamN(YAZ0.Decompress(Program.TryGetPathViaProject("ObjectData", textureArc + ".szs"))); //decompresses the extern Texture file
 
                             Dictionary<string, int> arc = new Dictionary<string, int>();
                             texArcCache.Add(textureArc, arc);
@@ -618,7 +624,7 @@ namespace Spotlight.ObjectRenderers
                         control.CurrentShader.SetVector4("color", control.NextPickingColor());
                         break;
                 }
-#endregion
+                #endregion
 
                 for (int i = 0; i<vaos.Length; i++)
                 {

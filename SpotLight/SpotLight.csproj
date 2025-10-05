@@ -179,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EditorDrawables\AreaObject.cs" />
+    <Compile Include="EditorDrawables\DrawModels.cs" />
     <Compile Include="EditorDrawables\ObjectUtils.cs" />
     <Compile Include="GUI\AddObjectForm.cs">
       <SubType>Form</SubType>
@@ -216,6 +217,7 @@
     </Compile>
     <Compile Include="Level\LevelComparer.cs" />
     <Compile Include="Level\LevelObjectsWriter.cs" />
+    <Compile Include="ObjectRenderers\Cam.cs" />
     <Compile Include="SuperSet.cs" />
     <Compile Include="GUI\ZoneSaveOptionsDialog.cs">
       <SubType>Form</SubType>

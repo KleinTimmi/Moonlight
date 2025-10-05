@@ -1,10 +1,19 @@
-﻿using GL_EditorFramework;
+﻿using BfresLibrary;
+using BYAML;
+using GL_EditorFramework;
 using GL_EditorFramework.GL_Core;
 using GL_EditorFramework.Interfaces;
-using OpenTK.Graphics.OpenGL;
 using OpenTK;
-using System.Collections.Generic;
+using OpenTK.Graphics.OpenGL;
+using Spotlight.Level;
+using Syroot.BinaryData;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using SZS;
+
 
 namespace Spotlight.ObjectRenderers
 {
@@ -15,6 +24,9 @@ namespace Spotlight.ObjectRenderers
         private static readonly Dictionary<string, ExtraModel> models = new Dictionary<string, ExtraModel>();
 
         public static ShaderProgram ExtraModelShaderProgram;
+
+        
+
 
         public static void Initialize()
         {

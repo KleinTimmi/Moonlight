@@ -117,6 +117,9 @@ namespace Spotlight.ObjectRenderers
                 case "GroupClipping":
                     uvTopLeft = new Vector2(0.75f, 0);
                     break;
+                case "Camerea":
+                    uvTopLeft = new Vector2(0.75f, 0);
+                    break;
 
                 default:
                     return false;
