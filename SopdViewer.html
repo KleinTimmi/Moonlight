@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>SOPD Voll-Viewer</title>
+<style>
+  body { font-family: monospace; background:#111; color:#eee; padding:16px; }
+  input { margin-bottom:10px; }
+  .classEntry { margin:10px 0; padding:10px; border:1px solid #444; border-radius:6px; background:#1e1e1e; }
+  summary { font-size:1.1em; cursor:pointer; color:#9cf; }
+  .list { margin-left:20px; }
+  .key { color:#ccc; }
+</style>
+</head>
+<body>
+<h2>Spotlight .SOPD Voll-Viewer</h2>
+<input type="file" id="fileInput" accept=".sopd"><br>
+<div id="output"></div>
+
+<script>
+document.getElementById("fileInput").addEventListener("change", async e => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const buffer = await file.arrayBuffer();
+  const view = new DataView(buffer);
+  const decoder = new TextDecoder("shift-jis");
+  const output = document.getElementById("output");
+  output.innerHTML = "";
+
+  let pos = 0;
+  function readStr() {
+    const bytes = [];
+    while (view.getUint8(pos) !== 0) bytes.push(view.getUint8(pos++));
+    pos++; // null byte skip
+    return decoder.decode(new Uint8Array(bytes));
+  }
+  function align4() { while (pos % 4 !== 0) pos++; }
+
+  function readStringList() {
+    const count = view.getUint16(pos, true); pos += 2;
+    const list = [];
+    for (let i=0;i<count;i++) list.push(readStr());
+    align4();
+    return list;
+  }
+
+  // --- Header ---
+  const magic = String.fromCharCode(...new Uint8Array(buffer, pos, 4)); pos += 4;
+  if (magic !== "SOPD") { alert("Keine SOPD-Datei!"); return; }
+  pos += 4; // Version bytes
+
+  const dict = String.fromCharCode(...new Uint8Array(buffer, pos, 4)); pos += 4;
+  if (dict !== "DICT") { alert("DICT fehlt!"); return; }
+  const entryCount = view.getInt32(pos, true); pos += 4;
+
+  for (let i=0;i<entryCount;i++) {
+    const magic = String.fromCharCode(view.getUint8(pos), view.getUint8(pos+1)); pos+=2;
+    const category = view.getUint8(pos++);
+    const objList = view.getUint8(pos++);
+
+    const className = readStr();
+    const objectNames = readStringList();
+    const modelNames = readStringList();
+
+    // Properties
+    const propCount = view.getUint16(pos, true); pos+=2;
+    const properties = [];
+    for (let p=0;p<propCount;p++) {
+      const name = readStr();
+      const typeId = view.getUint8(pos++); // type byte
+      properties.push(`${name} (TypeID ${typeId})`);
+    }
+    align4();
+
+    // Links
+    const linkNames = readStringList();
+
+    const html = `
+      <details class="classEntry">
+        <summary><b>${className}</b> | Category ${category} | ObjList ${objList}</summary>
+        <div class="list">
+          <div class="key">ObjectNames:</div>
+          <ul>${objectNames.map(o=>`<li>${o}</li>`).join("") || "<li>–</li>"}</ul>
+          <div class="key">ModelNames:</div>
+          <ul>${modelNames.map(o=>`<li>${o}</li>`).join("") || "<li>–</li>"}</ul>
+          <div class="key">Properties:</div>
+          <ul>${properties.map(p=>`<li>${p}</li>`).join("") || "<li>–</li>"}</ul>
+          <div class="key">LinkNames:</div>
+          <ul>${linkNames.map(l=>`<li>${l}</li>`).join("") || "<li>–</li>"}</ul>
+        </div>
+      </details>`;
+    output.insertAdjacentHTML("beforeend", html);
+  }
+});
+</script>
+</body>
+</html>
